@@ -10,7 +10,7 @@ import io
 @st.cache_data
 def load_data():
     # Fetch the dataset as a pandas DataFrame
-    df = pd.read_csv('data/california_housing_train.csv')
+    df = pd.read_csv('../datos/california_housing_train.csv')
     return df
 
 # Fijar semilla para fines pedagógicos
