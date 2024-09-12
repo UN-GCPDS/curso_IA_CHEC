@@ -66,7 +66,7 @@ with st.container():
     buffer = io.StringIO()
     consumption.info(buf=buffer)
     info_str = buffer.getvalue()
-    st.text(info_str)
+    st.text(info_str) # text
 
     st.write(f"Hagamos un pequeño análisis.")
 
