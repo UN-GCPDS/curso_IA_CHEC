@@ -10,7 +10,7 @@ import io
 @st.cache_data
 def load_data():
     # Fetch the dataset as a pandas DataFrame
-    df = pd.read_csv('/content/curso_IA_CHEC/datos/powerconsumption.csv')
+    df = pd.read_csv('datos/powerconsumption.csv')
     return df
 
 # Fijar semilla para fines pedagógicos
