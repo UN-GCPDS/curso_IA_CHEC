@@ -12,7 +12,6 @@ def load_data():
     # Fetch the dataset as a pandas DataFrame
     df = pd.read_csv('datos/california_housing_train.csv')
     return df
-
 # Fijar semilla para fines pedagógicos
 np.random.seed(42)
 
