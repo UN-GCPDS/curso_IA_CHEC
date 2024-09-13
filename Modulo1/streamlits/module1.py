@@ -44,7 +44,7 @@ with st.container():
 
     st.markdown("**Objetivo del Módulo:** Comprender el uso de funciones básicas de exploración de datos en `pandas`.")
 
-    st.markdown("""**Descripción de la base de datos: Este dataset contiene datos sobre el consumo de energía en la 
+    st.markdown("""**Descripción de la base de datos:** Este dataset contiene datos sobre el consumo de energía en la 
     ciudad de Tetuán, ubicada en el norte de Marruecos. Se centra en el análisis de cómo varios factores climáticos y otros 
     parámetros afectan el consumo de energía en tres zonas diferentes de la ciudad debido a que Tetúan está ubicada a lo largo del mar Mediterráneo, 
     con un clima suave y lluvioso en invierno, y caluroso y seco en verano.""")
@@ -189,6 +189,12 @@ with st.container():
             st.dataframe(consumption[columnas_seleccionadas])
 
     st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
+
+    input_index = st.number_input("Escribe el número del índice:", min_value=0, max_value = len(consumption), step=1)
+    st.dataframe(consumption.iloc[[input_index], [-3:]])
+
+
+
 
     # # Botón para actualizar la selección
     # if st.button("Actualizar selección"):
