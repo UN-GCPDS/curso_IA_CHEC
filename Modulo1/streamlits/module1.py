@@ -44,6 +44,11 @@ with st.container():
 
     st.markdown("**Objetivo del Módulo:** Comprender el uso de funciones básicas de exploración de datos en `pandas`.")
 
+    st.markdown("""**Descripción de la base de datos: Este dataset contiene datos sobre el consumo de energía en la 
+    ciudad de Tetuán, ubicada en el norte de Marruecos. Se centra en el análisis de cómo varios factores climáticos y otros 
+    parámetros afectan el consumo de energía en tres zonas diferentes de la ciudad debido a que Tetúan está ubicada a lo largo del mar Mediterráneo, 
+    con un clima suave y lluvioso en invierno, y caluroso y seco en verano.""")
+
 
 # Sección: Observación del Dataset con .head()
 with st.container():
@@ -158,7 +163,7 @@ with st.container():
     st.header("4. Indexación básica")
     st.write("""
     Recuerda que podemos elegir solo ver algunas filas o columnas dependiendo de la tarea en la que estemos interesados en ese momento.
-    Selecciona aquellas columnas que nos aporten únicamente el consumo de energía.
+    Por ejemplo, selecciona aquellas columnas que nos aporten únicamente el consumo de energía.
     """)
 
 
@@ -180,8 +185,10 @@ with st.container():
             # Mostrar DataFrame filtrado con las últimas 3 columnas seleccionadas
             st.dataframe(consumption[columnas_seleccionadas])
         else:
-            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PoerConsumtion' en su nombre.")
+            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumtion' en su nombre.")
             st.dataframe(consumption[columnas_seleccionadas])
+
+    st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
 
     # # Botón para actualizar la selección
     # if st.button("Actualizar selección"):
