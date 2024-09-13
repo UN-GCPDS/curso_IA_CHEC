@@ -169,15 +169,29 @@ with st.container():
         if st.checkbox(col):
             columnas_seleccionadas.append(col)
 
+    ultimas_tres_columnas = consumption.columns[-3:].tolist()
+
+
     # Botón para actualizar la selección
     if st.button("Actualizar selección"):
-        # Verificar si hay columnas seleccionadas
-        if columnas_seleccionadas:
-            # Mostrar DataFrame filtrado
-            st.write("Mostrando las columnas seleccionadas:")
+        # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
+        if set(columnas_seleccionadas) == set(ultimas_tres_columnas):
+            st.success("¡Muy bien! Has seleccionado las  3 columnas que corresponden al consumo de energía.")
+            # Mostrar DataFrame filtrado con las últimas 3 columnas seleccionadas
             st.dataframe(consumption[columnas_seleccionadas])
         else:
-            st.write("Selecciona al menos una columna para mostrar el DataFrame.")
+            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PoerConsumtion' en su nombre.")
+            st.dataframe(consumption[columnas_seleccionadas])
+
+    # # Botón para actualizar la selección
+    # if st.button("Actualizar selección"):
+    #     # Verificar si hay columnas seleccionadas
+    #     if columnas_seleccionadas:
+    #         # Mostrar DataFrame filtrado
+    #         st.write("Mostrando las columnas seleccionadas:")
+    #         st.dataframe(consumption[columnas_seleccionadas])
+    #     else:
+    #         st.write("Selecciona al menos una columna para mostrar el DataFrame.")
 
 
 # Mensaje de cierre del módulo
