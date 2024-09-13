@@ -174,7 +174,7 @@ with st.container():
         if st.checkbox(col):
             columnas_seleccionadas.append(col)
 
-    ultimas_tres_columnas = consumption.columns[-3:1].tolist()
+    ultimas_tres_columnas = ['PowerConsumption_Zone1', 'PowerConsumption_Zone2', 'PowerConsumption_Zone3', 'Datetime']
 
 
     # Botón para actualizar la selección
@@ -185,7 +185,7 @@ with st.container():
             # Mostrar DataFrame filtrado con las últimas 3 columnas seleccionadas
             st.dataframe(consumption[columnas_seleccionadas])
         else:
-            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption'.")
+            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption' en su nombre.")
             st.dataframe(consumption[columnas_seleccionadas])
 
     st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
