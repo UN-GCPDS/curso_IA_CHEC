@@ -152,5 +152,33 @@ with st.container():
             # Mostrar el número real de valores faltantes
             st.write(f"El valor total es incorrecto. Recuerda es el primer valor que obtenemos en la tabla.")
 
+# sección indexacción básica
+
+with st.container():
+    st.header("4. Indexación básica")
+    st.write("""
+    Recuerda que podemos elegir solo ver algunas filas o columnas dependiendo de la tarea en la que estemos interesados en ese momento.
+    Selecciona aquellas columnas que nos aporten únicamente el consumo de energía.
+    """)
+
+
+    # Crear checkboxes para seleccionar columnas
+    # Los checkboxes devolverán True o False dependiendo de si se han marcado
+    columnas_seleccionadas = []
+    for col in consumption.columns:
+        if st.checkbox(col):
+            columnas_seleccionadas.append(col)
+
+    # Botón para actualizar la selección
+    if st.button("Actualizar selección"):
+        # Verificar si hay columnas seleccionadas
+        if columnas_seleccionadas:
+            # Mostrar DataFrame filtrado
+            st.write("Mostrando las columnas seleccionadas:")
+            st.dataframe(consumption[columnas_seleccionadas])
+        else:
+            st.write("Selecciona al menos una columna para mostrar el DataFrame.")
+
+
 # Mensaje de cierre del módulo
 st.write("¡Fin del módulo! Ahora ya sabes cómo hacer una exploración inicial de datasets en `pandas`.")
