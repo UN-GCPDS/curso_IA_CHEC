@@ -174,7 +174,7 @@ with st.container():
         if st.checkbox(col):
             columnas_seleccionadas.append(col)
 
-    ultimas_tres_columnas = consumption.columns[-3:].tolist().append(consumption.columns[0])
+    ultimas_tres_columnas = consumption.columns[-3:1].tolist()
 
 
     # Botón para actualizar la selección
