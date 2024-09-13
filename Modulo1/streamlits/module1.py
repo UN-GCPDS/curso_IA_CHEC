@@ -38,8 +38,8 @@ with st.container():
     st.subheader("Introducción al Módulo")
     st.write("""
     En este módulo aprenderemos a manejar datos con `pandas`, utilizando un dataset de precios de vivienda en California.
-    Nos enfocaremos en explorar el dataset usando las funciones clave como `.head()`, `.info()`, y `.value_counts()`, entre otras. Con la base
-    de datos [Electric Power Consumption](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption)
+    Nos enfocaremos en explorar el dataset usando las funciones clave como `.head()`, `.info()`, y `.value_counts()`, entre 
+    otras. Utilizaremos la siguiente base de datos [Electric Power Consumption](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption)
     """)
 
     st.markdown("**Objetivo del Módulo:** Comprender el uso de funciones básicas de exploración de datos en `pandas`.")
