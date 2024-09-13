@@ -163,7 +163,7 @@ with st.container():
     st.header("4. Indexación básica")
     st.write("""
     Recuerda que podemos elegir solo ver algunas filas o columnas dependiendo de la tarea en la que estemos interesados en ese momento.
-    Por ejemplo, selecciona aquellas columnas que nos aporten únicamente el consumo de energía.
+    Por ejemplo, selecciona aquellas columnas que nos aporten únicamente el consumo de energía y el resgitro del tiempo en el cual fue tomada la muestra.
     """)
 
 
@@ -174,7 +174,7 @@ with st.container():
         if st.checkbox(col):
             columnas_seleccionadas.append(col)
 
-    ultimas_tres_columnas = consumption.columns[-3:].tolist()
+    ultimas_tres_columnas = consumption.columns[-3:].tolist().append(consumption.columns[0])
 
 
     # Botón para actualizar la selección
@@ -185,7 +185,7 @@ with st.container():
             # Mostrar DataFrame filtrado con las últimas 3 columnas seleccionadas
             st.dataframe(consumption[columnas_seleccionadas])
         else:
-            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumtion' en su nombre.")
+            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption'.")
             st.dataframe(consumption[columnas_seleccionadas])
 
     st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
