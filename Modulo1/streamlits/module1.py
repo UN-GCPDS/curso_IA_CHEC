@@ -176,7 +176,8 @@ with st.container():
     
     st.markdown(f"""
     <div style="text-align: right;">
-        <small>Salida generada por <code>consumption[{columna_seleccionada}].value_counts()</code></small><br>
+        <small>Salida generada por <code>consumption[{columna_seleccionada}].value_counts()</code></small>
+        <br>
     </div>
     """, unsafe_allow_html=True)
 
