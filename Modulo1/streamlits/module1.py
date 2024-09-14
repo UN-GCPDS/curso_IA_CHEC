@@ -200,7 +200,7 @@ with st.container():
     valor_expected = consumption.loc[[15342],['DiffuseFlows']]
 
     # Verificar si el valor ingresado es correcto
-    if freq:
+    if valor:
         if np.round(freq_expected, 3) == np.round(freq,3):
             st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_expected}")
         else:
