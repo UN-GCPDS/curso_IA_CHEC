@@ -201,11 +201,11 @@ with st.container():
 
     # Verificar si el valor ingresado es correcto
     if valor:
-        if np.round(freq_expected, 3) == np.round(freq,3):
+        if np.round(valor_expected, 3) == np.round(valor,3):
             st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_expected}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice..")
+            st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
 
 
 
