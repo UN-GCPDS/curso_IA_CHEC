@@ -48,7 +48,7 @@ with st.container():
     ciudad de Tetuán, ubicada en el norte de Marruecos. Se centra en el análisis de cómo varios factores climáticos y otros 
     parámetros afectan el consumo de energía en tres zonas diferentes de la ciudad debido a que Tetúan está ubicada a lo largo del mar Mediterráneo, 
     con un clima suave y lluvioso en invierno, y caluroso y seco en verano. A continuación se hace una pequeña descripción de
-    cada variable (columna)""")
+    cada variable (columna):""")
 
     st.markdown("""
     - **Date Time**: Ventana de tiempo de diez minutos.
@@ -70,6 +70,10 @@ with st.container():
 
     num_filas = st.number_input('Selecciona el número de filas a mostrar:', min_value=1, max_value=50, step=1, value=5)
     st.dataframe(consumption.head(num_filas))
+
+    st.markdown(f"""
+    <small> Salida generada por `consumption.head({num_filas})`
+    """, unsafe_allow_html=True)
 
 
 # Sección: Información del Dataset con .info()
