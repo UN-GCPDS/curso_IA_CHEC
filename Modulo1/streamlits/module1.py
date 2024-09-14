@@ -72,7 +72,9 @@ with st.container():
     st.dataframe(consumption.head(num_filas))
 
     st.markdown(f"""
+    <div style="text-align: right;">
     <small> Salida generada por `consumption.head({num_filas})`
+    </div>
     """, unsafe_allow_html=True)
 
 
@@ -91,7 +93,9 @@ with st.container():
     st.text(info_str) # text
 
     st.markdown("""
+    <div style="text-align: right;">
     <small> Salida generada por `consumption.info()`
+    </div>
     """, unsafe_allow_html=True)   
 
 
