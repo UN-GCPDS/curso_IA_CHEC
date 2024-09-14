@@ -90,6 +90,11 @@ with st.container():
     info_str = buffer.getvalue()
     st.text(info_str) # text
 
+    st.markdown("""
+    <small> Salida generada por `consumption.info()`
+    """, unsafe_allow_html=True)   
+
+
     st.write(f"Hagamos un pequeño análisis.")
 
     # pregunta por valores totales
