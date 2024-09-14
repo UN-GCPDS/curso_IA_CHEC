@@ -197,7 +197,7 @@ with st.container():
 
     # Input para el número esperado de valores faltantes
     valor = st.number_input("Introduce el valor:", min_value=0.0, step=0.001, format="%.3f")
-    valor_expected = consumption.loc[[15342],['DiffuseFlows']]
+    valor_expected = consumption.loc[[15342],['PowerConsumption_Zone2']]
 
     # Verificar si el valor ingresado es correcto
     if valor:
