@@ -299,8 +299,8 @@ with st.container():
 
     # Verificar si el valor ingresado es correcto
     if valor_temp:
-        if np.round(valor_temp, 3) == np.round(valor_temp,3):
-            st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_temp}")
+        if np.round(valor_temp, 3) == np.round(valor_temp_expected,3):
+            st.success(f"Muy bien, el valor la temperatua máxima en los registros es es {valor_temp}")
         else:
             # Mostrar el número real de valores faltantes
             st.write(f"El valor total es incorrecto. Recuerda que debes ver la estadística de la columna 'Temperature'")
