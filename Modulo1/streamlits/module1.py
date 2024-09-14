@@ -152,6 +152,12 @@ with st.container():
 
     st.dataframe(consumption["Temperature"].value_counts())
 
+    st.markdown("""
+    <div style="text-align: right;">
+        <small>Salida generada por <code>consumption["Temperature"].value_counts()</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.write("""
     Puedes modificar el argumento "Temperature" a cualquier columna.
     A continuación, puedes seleccionar una columna para analizar la frecuencia de sus valores.
@@ -166,6 +172,15 @@ with st.container():
     # Mostrar los resultados de .value_counts()
     st.subheader(f"Frecuencia de valores en la columna '{columna_seleccionada}'")
     st.write(consumption[columna_seleccionada].value_counts())
+
+    
+    st.markdown(f"""
+    <div style="text-align: right;">
+        <small>Salida generada por <code>consumption[{columna_seleccionada}].value_counts()</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+    
 
     # Pregunta
 
