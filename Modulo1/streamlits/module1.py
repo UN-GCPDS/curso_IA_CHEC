@@ -47,7 +47,20 @@ with st.container():
     st.markdown("""**Descripción de la base de datos:** Este dataset contiene datos sobre el consumo de energía en la 
     ciudad de Tetuán, ubicada en el norte de Marruecos. Se centra en el análisis de cómo varios factores climáticos y otros 
     parámetros afectan el consumo de energía en tres zonas diferentes de la ciudad debido a que Tetúan está ubicada a lo largo del mar Mediterráneo, 
-    con un clima suave y lluvioso en invierno, y caluroso y seco en verano.""")
+    con un clima suave y lluvioso en invierno, y caluroso y seco en verano. A continuación se hace una pequeña descripción de
+    cada variable (columna)""")
+
+    st.markdown("""
+    - **Date Time**: Ventana de tiempo de diez minutos.
+    - **Temperature**: Temperatura del clima.
+    - **Humidity**: Humedad del clima.
+    - **Wind Speed**: Velocidad del viento.
+    - **General Diffuse Flows**: El término "flujo difuso" describe fluidos de baja temperatura (< 0.2° a ~ 100°C) que se descargan lentamente a través de montículos de sulfuro, flujos de lava fracturados y ensamblajes de tapetes bacterianos y macrofauna.
+    - **Diffuse Flows**
+    - **Zone 1 Power Consumption**: Consumo de energía en la Zona 1.
+    - **Zone 2 Power Consumption**: Consumo de energía en la Zona 2.
+    - **Zone 3 Power Consumption**: Consumo de energía en la Zona 3.
+    """)
 
 
 # Sección: Observación del Dataset con .head()
@@ -201,9 +214,8 @@ with st.container():
 
     # Verificar si el valor ingresado es correcto
     if valor:
-        st.write(f"{valor}, {valor_expected}")
         if np.round(valor_expected, 3) == np.round(valor,3):
-            st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_expected}")
+            st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor}")
         else:
             # Mostrar el número real de valores faltantes
             st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
