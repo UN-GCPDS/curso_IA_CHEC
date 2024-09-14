@@ -267,7 +267,12 @@ with st.container():
             st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
 
 with st.container():
-    st.header("5. Estadística básica")
+    st.header("5. Estadística básica con `.describe()`")
+
+    st.write("""Genera las estadístibas básicas de las columnas (variables de interés). Las estadísticas descriptivas 
+    incluyen aquellas que resumen la tendencia central, la dispersión y la forma de la distribución de un conjunto de 
+    datos, excluyendo los valores faltantes. Veamos la estadística básica de alguna columna.
+    """)
 
     columna_seleccionada_corr = st.selectbox(
         "Selecciona una columna:",
@@ -278,6 +283,12 @@ with st.container():
     # Mostrar los resultados de .corr
     st.subheader(f"Estadística básica de '{columna_seleccionada_corr}'")
     st.write(consumption[columna_seleccionada_corr].describe())
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+        <small>Salida generada por <code>consumption[{columna_seleccionada_corr}].describe()</code></small>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 with st.container():
