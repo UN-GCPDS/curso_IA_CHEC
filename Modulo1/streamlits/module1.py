@@ -243,7 +243,7 @@ with st.container():
     st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
 
     input_index = st.number_input("Escribe el número del índice:", min_value=0, max_value = len(consumption), step=1)
-    columnas_4 = consumption.loc[[input_index], [consumption.columns[i] for i in [0,-3,-2,-1]]]
+    columnas_4 = [consumption.columns[i] for i in [0,-3,-2,-1]]
     st.dataframe(consumption.loc[[input_index], columnas_4])
 
     st.markdown(f"""
