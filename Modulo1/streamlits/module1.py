@@ -191,7 +191,21 @@ with st.container():
     st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
 
     input_index = st.number_input("Escribe el número del índice:", min_value=0, max_value = len(consumption), step=1)
-    st.dataframe(consumption.loc[[input_index], consumption.columns[-3:]])
+    st.dataframe(consumption.loc[[input_index], [consumption.columns[i] for i in [0,-3,-2,-1]]])
+
+    st.write("Ahora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
+
+    # Input para el número esperado de valores faltantes
+    valor = st.number_input("Introduce el valor:", min_value=0.0, step=0.001, format="%.3f")
+    valor_expected = consumption.loc[[15342],['DiffuseFlows']]
+
+    # Verificar si el valor ingresado es correcto
+    if freq:
+        if np.round(freq_expected, 3) == np.round(freq,3):
+            st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_expected}")
+        else:
+            # Mostrar el número real de valores faltantes
+            st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice..")
 
 
 
