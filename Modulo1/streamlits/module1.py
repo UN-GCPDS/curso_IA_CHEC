@@ -245,6 +245,12 @@ with st.container():
     input_index = st.number_input("Escribe el número del índice:", min_value=0, max_value = len(consumption), step=1)
     st.dataframe(consumption.loc[[input_index], [consumption.columns[i] for i in [0,-3,-2,-1]]])
 
+    st.markdown(f"""
+    <div style="text-align: right;">
+        <small>Salida generada por <code>consumption.loc[[{input_index}], [{consumption.columns[i] for i in [0,-3,-2,-1]}]]</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.write("Ahora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
 
     # Input para el número esperado de valores faltantes
