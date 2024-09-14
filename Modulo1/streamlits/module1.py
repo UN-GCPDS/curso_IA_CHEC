@@ -225,9 +225,20 @@ with st.container():
             st.success("¡Muy bien! Has seleccionado las  4 columnas que corresponden al consumo de energía.")
             # Mostrar DataFrame filtrado con las últimas  columnas seleccionadas
             st.dataframe(consumption[columnas_seleccionadas])
+            st.markdown(f"""
+            <div style="text-align: right;">
+                <small>Salida generada por <code>consumption[{columnas_seleccionadas}]</code></small>
+            </div>
+            """, unsafe_allow_html=True)
+
         else:
             st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption' en su nombre.")
             st.dataframe(consumption[columnas_seleccionadas])
+            st.markdown(f"""
+            <div style="text-align: right;">
+                <small>Salida generada por <code>consumption[{columnas_seleccionadas}]</code></small>
+            </div>
+            """, unsafe_allow_html=True)
 
     st.write("Ahora, escribe el índice de la fila de la cual te gustaría conocer sus consumos de energía")
 
