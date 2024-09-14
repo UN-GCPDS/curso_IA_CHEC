@@ -303,7 +303,7 @@ with st.container():
             st.success(f"Muy bien, el valor la temperatua máxima en los registros es es {valor_temp}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El valor total es incorrecto. Recuerda que debes ver la estadística de la columna 'Temperature'")
+            st.write(f"El valor es incorrecto. Recuerda que debes ver la estadística de la columna 'Temperature'")
 
 
 with st.container():
