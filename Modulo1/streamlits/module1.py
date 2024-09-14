@@ -115,7 +115,7 @@ with st.container():
             st.success(f"Muy bien, el valor total de entradas es {total}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El valor total es incorrecto. Recuerda que las entradas totales se definen como 'entries'")
+            st.error(f"El valor total es incorrecto. Recuerda que las entradas totales se definen como 'entries'")
 
 
     # pregunta de valores faltantes
@@ -196,7 +196,7 @@ with st.container():
             st.success(f"Muy bien, el valor más frecuente de la columna DiffuseFlows	 es {freq_expected}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El valor total es incorrecto. Recuerda es el primer valor que obtenemos en la tabla.")
+            st.error(f"El valor total es incorrecto. Recuerda es el primer valor que obtenemos en la tabla.")
 
 # sección indexacción básica
 
@@ -264,7 +264,7 @@ with st.container():
             st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
+            st.error(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
 
 with st.container():
     st.header("5. Estadística básica con `.describe()`")
@@ -300,10 +300,10 @@ with st.container():
     # Verificar si el valor ingresado es correcto
     if valor_temp:
         if valor_temp == valor_temp_expected:
-            st.success(f"Muy bien, el valor la temperatua máxima en los registros es es {valor_temp}")
+            st.success(f"Muy bien, el valor la temperatua máxima en los registros es {valor_temp}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El valor es incorrecto. Recuerda que debes ver la estadística de la columna 'Temperature'")
+            st.error(f"El valor es incorrecto. Recuerda que debes ver la estadística de la columna 'Temperature'")
 
 
 with st.container():
