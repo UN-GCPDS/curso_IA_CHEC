@@ -274,22 +274,36 @@ with st.container():
     datos, excluyendo los valores faltantes. Veamos la estadística básica de alguna columna.
     """)
 
-    columna_seleccionada_corr = st.selectbox(
+    columna_seleccionada_esta = st.selectbox(
         "Selecciona una columna:",
         options=consumption.columns,
-        key="selectbox_corr",
+        key="selectbox_esta",
         index = 1
     )
 
-    # Mostrar los resultados de .corr
-    st.subheader(f"Estadística básica de '{columna_seleccionada_corr}'")
-    st.write(consumption[columna_seleccionada_corr].describe())
+    # Mostrar los resultados de .esta
+    st.subheader(f"Estadística básica de '{columna_seleccionada_esta}'")
+    st.write(consumption[columna_seleccionada_esta].describe())
 
     st.markdown(f"""
     <div style="text-align: right;">
-        <small>Salida generada por <code>consumption[{columna_seleccionada_corr}].describe()</code></small>
+        <small>Salida generada por <code>consumption[{columna_seleccionada_esta}].describe()</code></small>
     </div>
     """, unsafe_allow_html=True)
+
+    st.write("¿Cuál fue la **maxíma temperatura** alcanzada en los registros?")
+
+    # Input para el número esperado macimo
+    valor_temp = st.number_input("Introduce el valor:", min_value=0.0, step=0.01, format="%.3f")
+    valor_tem_expected = consumption['Temperature'].describe()['max']
+
+    # Verificar si el valor ingresado es correcto
+    if valor_temp:
+        if np.round(valor_temp, 3) == np.round(valor_temp,3):
+            st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_temp}")
+        else:
+            # Mostrar el número real de valores faltantes
+            st.write(f"El valor total es incorrecto. Recuerda que debes ver la estadística de la columna 'Temperature'")
 
 
 with st.container():
