@@ -275,7 +275,7 @@ with st.container():
     )
 
     # Mostrar los resultados de .corr
-    st.subheader(f"estadística básica de '{columna_seleccionada_corr}'")
+    st.subheader(f"Estadística básica de '{columna_seleccionada_corr}'")
     st.write(consumption[columna_seleccionada_corr].describe())
 
 
