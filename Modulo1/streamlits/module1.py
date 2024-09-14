@@ -201,6 +201,7 @@ with st.container():
 
     # Verificar si el valor ingresado es correcto
     if valor:
+        st.write(f"{valor}, {valor_expected}")
         if np.round(valor_expected, 3) == np.round(valor,3):
             st.success(f"Muy bien, el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342 es {valor_expected}")
         else:
