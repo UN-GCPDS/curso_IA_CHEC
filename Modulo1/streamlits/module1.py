@@ -277,7 +277,8 @@ with st.container():
     columna_seleccionada_corr = st.selectbox(
         "Selecciona una columna:",
         options=consumption.columns,
-        key="selectbox_corr"
+        key="selectbox_corr",
+        index = 1
     )
 
     # Mostrar los resultados de .corr
