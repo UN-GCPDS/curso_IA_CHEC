@@ -252,7 +252,7 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-    st.write("\nAhora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
+    st.write("Ahora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
 
     # Input para el número esperado de valores faltantes
     valor = st.number_input("Introduce el valor:", min_value=0.0, step=0.001, format="%.3f")
@@ -266,18 +266,21 @@ with st.container():
             # Mostrar el número real de valores faltantes
             st.write(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
 
+with st.container():
+    st.header("5. Estadística básica")
+
+    columna_seleccionada_corr = st.selectbox(
+        "Selecciona una columna:",
+        options=consumption.columns
+    )
+
+    # Mostrar los resultados de .corr
+    st.subheader(f"estadística básica de '{columna_seleccionada_corr}'")
+    st.write(consumption[columna_seleccionada_corr].describe())
 
 
-
-    # # Botón para actualizar la selección
-    # if st.button("Actualizar selección"):
-    #     # Verificar si hay columnas seleccionadas
-    #     if columnas_seleccionadas:
-    #         # Mostrar DataFrame filtrado
-    #         st.write("Mostrando las columnas seleccionadas:")
-    #         st.dataframe(consumption[columnas_seleccionadas])
-    #     else:
-    #         st.write("Selecciona al menos una columna para mostrar el DataFrame.")
+with st.container():
+    st.header("6. Correlación y Covarianza")
 
 
 # Mensaje de cierre del módulo
