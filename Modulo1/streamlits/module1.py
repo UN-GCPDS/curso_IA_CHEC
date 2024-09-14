@@ -252,7 +252,7 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-    st.write("Ahora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
+    st.write("\nAhora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
 
     # Input para el número esperado de valores faltantes
     valor = st.number_input("Introduce el valor:", min_value=0.0, step=0.001, format="%.3f")
