@@ -73,7 +73,7 @@ with st.container():
 
     st.markdown(f"""
     <div style="text-align: right;">
-    <small> Salida generada por `consumption.head({num_filas})`
+    <small> Salida generada por <code>consumption.head({num_filas})<\code>
     </div>
     """, unsafe_allow_html=True)
 
@@ -94,9 +94,9 @@ with st.container():
 
     st.markdown("""
     <div style="text-align: right;">
-    <small> Salida generada por `consumption.info()`
+        <small>Salida generada por <code>consumption.info()</code></small>
     </div>
-    """, unsafe_allow_html=True)   
+    """, unsafe_allow_html=True)
 
 
     st.write(f"Hagamos un pequeño análisis.")
