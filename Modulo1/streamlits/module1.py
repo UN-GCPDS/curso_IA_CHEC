@@ -177,7 +177,6 @@ with st.container():
     st.markdown(f"""
     <div style="text-align: right;">
         <small>Salida generada por <code>consumption[{columna_seleccionada}].value_counts()</code></small>
-        <br>
     </div>
     """, unsafe_allow_html=True)
 
@@ -185,7 +184,7 @@ with st.container():
 
     # Pregunta
 
-    st.write(f"¿Cuál es el valor más frecuente de la columna DiffuseFlows?")
+    st.write(f"\n¿Cuál es el valor más frecuente de la columna DiffuseFlows?")
 
     # Input para el número esperado de valores faltantes
     freq = st.number_input("Introduce el valor más frecuente:", min_value=0.0, step=0.001, format="%.3f")
