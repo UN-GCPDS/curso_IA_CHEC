@@ -295,11 +295,11 @@ with st.container():
 
     # Input para el número esperado macimo
     valor_temp = st.number_input("Introduce el valor:", min_value=0.0, step=0.01, format="%.3f")
-    valor_tem_expected = consumption['Temperature'].describe()['max']
+    valor_temp_expected = consumption['Temperature'].describe()['max']
 
     # Verificar si el valor ingresado es correcto
     if valor_temp:
-        if np.round(valor_temp, 3) == np.round(valor_temp_expected,3):
+        if valor_temp == valor_temp_expected:
             st.success(f"Muy bien, el valor la temperatua máxima en los registros es es {valor_temp}")
         else:
             # Mostrar el número real de valores faltantes
