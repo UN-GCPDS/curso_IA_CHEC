@@ -339,7 +339,7 @@ with st.container():
     st.write("¿Cuáles son las variables diferentes más correlacionadas positivamente? Selecciona los dos nombres.")
 
     columnas_seleccionadas_corr = []
-    for col in consumption.columns.iloc[:,1:]:
+    for col in consumption.iloc[:,1:].columns:
         if st.checkbox(col, key=f"checkbox_corr_{col}"):
             columnas_seleccionadas_corr.append(col)
     
