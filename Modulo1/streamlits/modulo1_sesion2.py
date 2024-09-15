@@ -82,6 +82,18 @@ with st.container():
 with st.container():
     st.header("2. Visualización de Histograma con `.hist()`")
 
+ # Descripción del histograma y bins
+    st.markdown("""
+    **¿Qué es un histograma?**
+    
+    Un histograma es una representación gráfica que muestra la distribución de una variable numérica. 
+    La variable se divide en intervalos, y la altura de cada barra indica la frecuencia de los valores que caen dentro de ese intervalo.
+
+    **¿Qué son los bins?**
+    
+    Los "bins" son los intervalos o contenedores en los que se agrupan los datos. El número de bins determina cuántas divisiones tendrá el histograma, lo que influye en el nivel de detalle de la gráfica. Un número menor de bins agrupa más valores en cada barra, mientras que un número mayor de bins permite ver variaciones más finas en los datos.
+    """)
+
     # Seleccionar la columna para el histograma
     columnas_numericas = consumption.select_dtypes(include=['float64', 'int64']).columns.tolist()
     
@@ -102,8 +114,29 @@ with st.container():
 
     st.markdown(f"""
     <div style="text-align: right;">
-    <small> Salida generada por <code>plt.hist({columna_seleccionada}, bins={bins})<\code></small>
+    <small> Salida generada por <code>plt.hist({columna_seleccionada}, bins={bins})</code></small>
     </div>
     """, unsafe_allow_html=True)
+
+    # Pregunta interactiva sobre la columna 'humidity'
+    st.markdown("### Pregunta:")
+    st.markdown("En el histograma de la columna `humidity`, ¿qué valores son más frecuentes?")
+
+    respuesta = st.radio("Selecciona una opción:", ['Valores mayores a 50', 'Valores menores a 50'])
+
+    # Comprobación de la respuesta
+    valores_menores_50 = consumption[consumption['humidity'] < 50]['humidity'].count()
+    valores_mayores_50 = consumption[consumption['humidity'] >= 50]['humidity'].count()
+
+    if respuesta == 'Valores mayores a 50':
+        if valores_mayores_50 > valores_menores_50:
+            st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
+        else:
+            st.error("Incorrecto. Los valores menores a 50 son más frecuentes.")
+    elif respuesta == 'Valores menores a 50':
+        if valores_menores_50 > valores_mayores_50:
+            st.success("¡Correcto! Los valores menores a 50 son más frecuentes.")
+        else:
+            st.error("Incorrecto. Los valores mayores a 50 son más frecuentes.")
 
 
