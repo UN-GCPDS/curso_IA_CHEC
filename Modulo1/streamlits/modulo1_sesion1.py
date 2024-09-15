@@ -39,12 +39,10 @@ st.title("Módulo 1: Programación y Estadística Básica con Python")
 with st.container():
     st.subheader("Introducción al Módulo")
     st.write("""
-    En este módulo aprenderemos a manejar datos con `pandas`, utilizando un dataset de precios de vivienda en California.
+    **Sesión 1:** en esta sesión aprenderemos a manejar datos con `pandas`, utilizando un dataset de precios de vivienda en California.
     Nos enfocaremos en explorar el dataset usando las funciones clave como `.head()`, `.info()`, y `.value_counts()`, entre 
     otras. Utilizaremos la siguiente base de datos [Electric Power Consumption](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption)
     """)
-
-    st.markdown("**Objetivo del Módulo:** Comprender el uso de funciones básicas de exploración de datos en `pandas`.")
 
     st.markdown("""**Descripción de la base de datos:** Este dataset contiene datos sobre el consumo de energía en la 
     ciudad de Tetuán, ubicada en el norte de Marruecos. Se centra en el análisis de cómo varios factores climáticos y otros 
