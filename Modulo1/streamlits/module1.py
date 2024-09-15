@@ -327,7 +327,7 @@ with st.container():
     st.markdown(f"""
     <div style="text-align: right;">
         <small>Salida generada por 
-        <code>corr_matrix = consumption.iloc[:,1:].corr()\n
+        <code>corr_matrix = consumption.iloc[:,1:].corr()<br>
             sns.heatmap(corr_matrix,
             annot=True,               
             cmap="coolwarm",           
