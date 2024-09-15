@@ -340,7 +340,7 @@ with st.container():
 
     columnas_seleccionadas_corr = []
     for col in consumption.columns:
-        if st.checkbox(col):
+        if st.checkbox(col, key='checkbox_corr'):
             columnas_seleccionadas_corr.append(col)
     
     # Hacer una copia de la matriz de correlación
