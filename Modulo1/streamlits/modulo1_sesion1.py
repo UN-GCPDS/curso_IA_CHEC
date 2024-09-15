@@ -99,9 +99,7 @@ with st.container():
     """, unsafe_allow_html=True)
 
 
-    st.write(f"Hagamos un pequeño análisis.")
-
-    # pregunta por valores totales
+    st.markdown("### Pregunta:")
 
     st.write("¿Cuál es el valor total de entradas (filas) de la base de datos?")
 
@@ -120,9 +118,9 @@ with st.container():
 
     # pregunta de valores faltantes
 
+    st.markdown("### Pregunta:")
+
     col_name = consumption.columns[2]
-
-
 
     st.write(f"En la columna '{col_name}', ¿cuántos valores faltantes hay?")
 
@@ -182,7 +180,7 @@ with st.container():
 
     
 
-    # Pregunta
+    st.markdown("### Pregunta:")
 
     st.write(f"\n¿Cuál es el valor más frecuente de la columna DiffuseFlows?")
 
