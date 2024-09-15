@@ -373,9 +373,8 @@ with st.container():
             columnas_seleccionadas_corr_neg.append(col)
 
 
-    # Encontrar el par de variables con la correlación positiva más alta
-    min_corr_value = corr_matrix_pos.min().min()  # Valor más alto de correlación positiva
-    min_corr_pair = corr_matrix_pos.stack().idxmin()  # Par de variables con la correlación positiva más alta
+    min_corr_value = corr_matrix_copy.min().min()  # Valor más alto de correlación positiva
+    min_corr_pair = corr_matrix_copy.stack().idxmin() 
     
     st.write(min_corr_pair)
     # Botón para actualizar la selección
