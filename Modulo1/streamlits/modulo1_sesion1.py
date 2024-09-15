@@ -73,7 +73,7 @@ with st.container():
 
     st.markdown(f"""
     <div style="text-align: right;">
-    <small> Salida generada por <code>consumption.head({num_filas})<\code>
+    <small> Salida generada por <code>consumption.head({num_filas})</code>
     </div>
     """, unsafe_allow_html=True)
 
