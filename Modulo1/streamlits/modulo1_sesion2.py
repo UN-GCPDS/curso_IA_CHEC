@@ -147,9 +147,16 @@ with st.container():
     st.markdown("""
     **¿Qué es un histograma con KDE?**
     
-    Además de mostrar la distribución de los datos con barras como en un histograma tradicional, 
-    el gráfico con **KDE (Kernel Density Estimate)** añade una línea suave que estima la densidad de los datos. 
-    Esta línea ayuda a visualizar mejor la tendencia general de la distribución, sin depender únicamente de las barras.
+    Un histograma con **KDE (Kernel Density Estimate)** añade una línea suave que estima la densidad de los datos. 
+    La curva KDE ayuda a ver mejor la tendencia general de la distribución.
+
+    Existen diferentes tipos de distribuciones, como:
+
+    - Distribución unimodal (la curva tiene un solo pico, lo que sugiere que los datos se agrupan alrededor de un único valor)
+    - Distribución bimodal (la curva tiene dos picos, lo que sugiere dos agrupaciones distintas de los datos)
+    - Distribución uniforme (la curva es relativamente plana, lo que sugiere que los valores están distribuidos de manera uniforme)
+    - Distribución sesgada a la derecha (la curva tiene un pico más hacia la izquierda y una "cola" larga hacia la derecha, lo que sugiere que hay más valores bajos)
+    - Distribución sesgada a la izquierda (la curva tiene un pico más hacia la derecha y una "cola" larga hacia la izquierda, lo que sugiere que hay más valores altos)
     """)
 
     # Seleccionar la columna para el histograma
@@ -173,6 +180,24 @@ with st.container():
     <small> Salida generada por <code>sns.histplot({columna_seleccionada}, bins={bins}, kde=True)</code></small>
     </div>
     """, unsafe_allow_html=True)
+
+    # Pregunta interactiva sobre la distribución
+    st.markdown("### Pregunta:")
+    st.markdown(f"Observa el histograma con KDE para la columna `{columna_seleccionada}`. ¿Cómo describirías la distribución de los datos?")
+
+    respuesta_distribucion = st.radio(
+        "Selecciona una opción:",
+        ['Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
+    )
+
+    # Validación de la respuesta según el análisis del histograma (ejemplo para 'Temperature')
+    if columna_seleccionada == 'Temperature':
+        # Supongamos que la temperatura tiene una distribución unimodal
+        if respuesta_distribucion == 'Distribución bimodal':
+            st.success("¡Correcto! La distribución de `Temperature` es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
+        else:
+            st.error("Incorrecto. Observa que la distribución de `Temperature` es tiene dos picos.")
+
 
 
 
