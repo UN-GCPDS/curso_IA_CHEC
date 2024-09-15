@@ -387,4 +387,4 @@ with st.container():
 # Mensaje de cierre del módulo
 st.write("¡Fin de la primera sesión del módulo 1! Ahora ya sabes cómo hacer una exploración inicial de datasets en `pandas`.")
 
-st.warnings("Cuando cierres esta ventana, no podrás guardar tu progreso. Para guardar tu trabajo, dirígete a la esquina superior derecha, donde verás tres puntos. Selecciona la opción 'Print' para guardar tus avances en formato PDF.")
+st.warning("Cuando cierres esta ventana, no podrás guardar tu progreso. Para guardar tu trabajo, dirígete a la esquina superior derecha, donde verás tres puntos. Selecciona la opción 'Print' para guardar tus avances en formato PDF.")
