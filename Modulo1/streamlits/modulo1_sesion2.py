@@ -181,6 +181,25 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
+    # Sección: Gráfica KDE pura
+    st.markdown("### Solo la curva KDE")
+
+    # Generar la gráfica KDE
+    fig_kde, ax_kde = plt.subplots()
+    kdeplot = sns.kdeplot(consumption[columna_seleccionada], bw_adjust=1, ax=ax_kde)
+    ax_kde.set_title(f'Curva KDE de {columna_seleccionada}')
+    ax_kde.set_xlabel(columna_seleccionada)
+    ax_kde.set_ylabel('Densidad')
+
+    # Mostrar la gráfica KDE pura en la app
+    st.pyplot(fig_kde)
+
+    st.markdown("""
+    Además del histograma, también podemos visualizar solo la curva que estima la densidad de los datos (KDE). 
+    Esta curva nos permite observar la forma de la distribución de los valores de una manera más suave, sin la segmentación en bins que tiene el histograma. 
+    Es especialmente útil para identificar tendencias generales, como si los datos se agrupan en uno o varios picos, o si están distribuidos de forma más uniforme.
+    """)
+
 # Sección: Pregunta interactiva sobre la distribución
 st.markdown("### Pregunta:")
 st.markdown(f"Observa el histograma con KDE para la columna `{columna_seleccionada}`. ¿Cómo describirías la distribución de los datos?")
@@ -199,6 +218,7 @@ if st.button("Validar respuesta"):
             st.success("¡Correcto! La distribución de 'Temperature' es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
         else:
             st.error("Incorrecto. Observa que la distribución de 'Temperature' tiene dos picos.")
+
 
 
 
