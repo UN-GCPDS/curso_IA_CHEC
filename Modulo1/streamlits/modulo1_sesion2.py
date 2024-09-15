@@ -185,16 +185,14 @@ with st.container():
 st.markdown("### Pregunta:")
 st.markdown(f"Observa el histograma con KDE para la columna `{columna_seleccionada}`. ¿Cómo describirías la distribución de los datos?")
 
-# Añadimos una opción por defecto que pide al usuario seleccionar algo
-opciones = ['Selecciona una opción', 'Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
+# Opciones sin seleccionar ninguna por defecto
+opciones = ['Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
 
-respuesta_distribucion = st.radio("Selecciona una opción:", opciones, index=0)  # "Selecciona una opción" es la opción por defecto
+# Crear el radio button sin selección predeterminada (index=None no es soportado)
+respuesta_distribucion = st.radio("Selecciona una opción:", opciones)
 
-# Validación de la respuesta: comprobamos que el usuario haya seleccionado algo
-if respuesta_distribucion == 'Selecciona una opción':
-    st.warning("Por favor, selecciona una opción para continuar.")
-else:
-    # Validación según la columna seleccionada (en este ejemplo para 'Temperature')
+# Botón para confirmar la respuesta
+if st.button("Validar respuesta"):
     if columna_seleccionada == 'Temperature':
         # Supongamos que la temperatura tiene una distribución bimodal
         if respuesta_distribucion == 'Distribución bimodal':
