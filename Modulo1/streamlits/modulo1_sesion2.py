@@ -190,11 +190,12 @@ with st.container():
         ['Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
     )
 
-    # Supongamos que la temperatura tiene una distribución unimodal
-    if respuesta_distribucion == 'Distribución bimodal':
-        st.success("¡Correcto! La distribución de `Temperature` es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
-    else:
-        st.error("Incorrecto. Observa que la distribución de `Temperature` es tiene dos picos.")
+    if respuesta_distribucion:
+        # Supongamos que la temperatura tiene una distribución unimodal
+        if respuesta_distribucion == 'Distribución bimodal':
+            st.success("¡Correcto! La distribución de 'Temperature' es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
+        else:
+            st.error("Incorrecto. Observa que la distribución de 'Temperature' tiene dos picos.")
 
 
 
