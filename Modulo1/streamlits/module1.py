@@ -309,7 +309,7 @@ with st.container():
 
 
 with st.container():
-    st.header("6. Correlación y Covarianza")
+    st.header("6. Correlación")
 
     st.write("""La **correlación** nos permite medir la fuerza y dirección de la relación lineal entre dos variables. 
     """)
