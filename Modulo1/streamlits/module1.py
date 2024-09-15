@@ -214,7 +214,7 @@ with st.container():
     # Los checkboxes devolverán True o False dependiendo de si se han marcado
     columnas_seleccionadas = []
     for col in consumption.columns:
-        if st.checkbox(col, key="checkbox_index"):
+        if st.checkbox(col, key=f"checkbox_index_{col}"):
             columnas_seleccionadas.append(col)
 
     columnas_interes = ['PowerConsumption_Zone1', 'PowerConsumption_Zone2', 'PowerConsumption_Zone3', 'Datetime']
@@ -340,7 +340,7 @@ with st.container():
 
     columnas_seleccionadas_corr = []
     for col in consumption.columns:
-        if st.checkbox(col, key="checkbox_corr"):
+        if st.checkbox(col, key=f"checkbox_corr_{col}"):
             columnas_seleccionadas_corr.append(col)
     
     # Hacer una copia de la matriz de correlación
