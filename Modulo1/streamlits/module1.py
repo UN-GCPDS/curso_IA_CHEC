@@ -360,10 +360,10 @@ with st.container():
     if st.button("Actualizar selección", key = "button_corr"):
         # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
         if set(columnas_seleccionadas_corr) == set(max_corr_pair):
-            st.success(f"¡Muy bien! Has seleccionado las 2 variables más correlacionadas postivamente. {max_corr_pair[0]} y {max_corr_pair[1]} tienen una correlación de {max_corr_value}")
+            st.success(f"¡Muy bien! Has seleccionado las 2 variables más correlacionadas postivamente. {max_corr_pair[0]} y {max_corr_pair[1]} tienen una correlación de {np.round(max_corr_value,2)}")
 
         else:
-            st.error("No seleccionaste las variables correctamente. Recuerda que, en este caso, el color puede ser de utilidad (Las más rojizas corresponden a valores más altos).")
+            st.error("No seleccionaste las 2 variables correctamente. Recuerda que, en este caso, el color puede ser de utilidad (las más rojizas corresponden a valores más altos).")
 
 # Mensaje de cierre del módulo
 st.write("¡Fin del módulo! Ahora ya sabes cómo hacer una exploración inicial de datasets en `pandas`.")
