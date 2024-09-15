@@ -376,10 +376,8 @@ with st.container():
     min_corr_value = corr_matrix_copy.min().min()  # Valor más alto de correlación positiva
     min_corr_pair = corr_matrix_copy.stack().idxmin() 
     
-    st.write(min_corr_pair)
     # Botón para actualizar la selección
     if st.button("Actualizar selección", key = "button_corr_neg"):
-        # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
         if set(columnas_seleccionadas_corr_neg) == set(min_corr_pair):
             st.success(f"¡Muy bien! Has seleccionado las 2 variables más correlacionadas negativamente. {min_corr_pair[0]} y {min_corr_pair[1]} tienen una correlación de {np.round(min_corr_value,2)}")
 
