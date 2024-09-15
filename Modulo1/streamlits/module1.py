@@ -357,7 +357,7 @@ with st.container():
     max_corr_pair = corr_matrix_pos.stack().idxmax()  # Par de variables con la correlación positiva más alta
     
     # Botón para actualizar la selección
-    if st.button("Actualizar selección"):
+    if st.button("Actualizar selección", key = "button_corr"):
         # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
         if set(columnas_seleccionadas_corr) == set(max_corr_pair):
             st.success(f"¡Muy bien! Has seleccionado las 2 variables más correlacionadas postivamente. {max_corr_pair[0]} y {max_corr_pair[1]} tienen una correlación de {max_corr_value}")
