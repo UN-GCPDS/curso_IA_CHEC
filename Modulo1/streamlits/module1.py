@@ -336,7 +336,7 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-    st.write("¿Cuáles son las variables diferentes más correlacionadas positivamente? Selecciona los dos nombres.")
+    st.write("¿Cuáles son las variables diferentes más correlacionadas **positivamente**? Selecciona los dos nombres.")
 
     columnas_seleccionadas_corr = []
     for col in consumption.iloc[:,1:].columns:
@@ -377,6 +377,7 @@ with st.container():
     min_corr_value = corr_matrix_pos.min().min()  # Valor más alto de correlación positiva
     min_corr_pair = corr_matrix_pos.stack().idxmin()  # Par de variables con la correlación positiva más alta
     
+    st.write(min_corr_pair)
     # Botón para actualizar la selección
     if st.button("Actualizar selección", key = "button_corr_neg"):
         # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
