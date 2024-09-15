@@ -74,7 +74,7 @@ with st.container():
 
     st.markdown(f"""
     <div style="text-align: right;">
-    <small> Salida generada por <code>consumption.head({num_filas})<\code>
+    <small> Salida generada por <code>consumption.head({num_filas})</code>
     </div>
     """, unsafe_allow_html=True)
 
@@ -138,5 +138,41 @@ with st.container():
             st.success("¡Correcto! Los valores menores a 50 son más frecuentes.")
         else:
             st.error("Incorrecto. Los valores mayores a 50 son más frecuentes.")
+
+# Sección: Histograma con Seaborn y KDE
+with st.container():
+    st.header("3. Visualización de Histograma con `sns.histplot` y KDE")
+
+    # Descripción del histograma con KDE
+    st.markdown("""
+    **¿Qué es un histograma con KDE?**
+    
+    Además de mostrar la distribución de los datos con barras como en un histograma tradicional, 
+    el gráfico con **KDE (Kernel Density Estimate)** añade una línea suave que estima la densidad de los datos. 
+    Esta línea ayuda a visualizar mejor la tendencia general de la distribución, sin depender únicamente de las barras.
+    """)
+
+    # Seleccionar la columna para el histograma
+    columna_seleccionada = st.selectbox('Selecciona la columna para el histograma con KDE:', columnas_numericas)
+
+    # Seleccionar el número de bins
+    bins = st.slider('Selecciona el número de bins para el histograma con KDE:', min_value=5, max_value=100, step=1, value=20)
+
+    # Mostrar el histograma con sns.histplot y KDE
+    fig, ax = plt.subplots()
+    sns.histplot(consumption[columna_seleccionada], bins=bins, kde=True, color='blue', ax=ax)
+    ax.set_title(f'Histograma de {columna_seleccionada} con KDE')
+    ax.set_xlabel(columna_seleccionada)
+    ax.set_ylabel('Frecuencia')
+
+    # Mostrar la gráfica en la app
+    st.pyplot(fig)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small> Salida generada por <code>sns.histplot({columna_seleccionada}, bins={bins}, kde=True)</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
 
 
