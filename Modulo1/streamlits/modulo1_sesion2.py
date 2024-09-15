@@ -181,17 +181,22 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-    # Pregunta interactiva sobre la distribución
-    st.markdown("### Pregunta:")
-    st.markdown(f"Observa el histograma con KDE para la columna 'Temperature'. ¿Cómo describirías la distribución de los datos?")
+# Sección: Pregunta interactiva sobre la distribución
+st.markdown("### Pregunta:")
+st.markdown(f"Observa el histograma con KDE para la columna `{columna_seleccionada}`. ¿Cómo describirías la distribución de los datos?")
 
-    respuesta_distribucion = st.radio(
-        "Selecciona una opción:",
-        ['Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
-    )
+# Añadimos una opción por defecto que pide al usuario seleccionar algo
+opciones = ['Selecciona una opción', 'Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
 
-    if respuesta_distribucion:
-        # Supongamos que la temperatura tiene una distribución unimodal
+respuesta_distribucion = st.radio("Selecciona una opción:", opciones, index=0)  # "Selecciona una opción" es la opción por defecto
+
+# Validación de la respuesta: comprobamos que el usuario haya seleccionado algo
+if respuesta_distribucion == 'Selecciona una opción':
+    st.warning("Por favor, selecciona una opción para continuar.")
+else:
+    # Validación según la columna seleccionada (en este ejemplo para 'Temperature')
+    if columna_seleccionada == 'Temperature':
+        # Supongamos que la temperatura tiene una distribución bimodal
         if respuesta_distribucion == 'Distribución bimodal':
             st.success("¡Correcto! La distribución de 'Temperature' es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
         else:
