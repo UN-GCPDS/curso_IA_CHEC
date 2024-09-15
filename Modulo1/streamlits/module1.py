@@ -336,6 +336,50 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
+    st.write("¿Cuáles son las variables más correlacionadas positivamente? Selecciona los dos bomnres.")
+
+    columnas_seleccionadas_corr = []
+    for col in consumption.columns:
+        if st.checkbox(col):
+            columnas_seleccionadas_corr.append(col)
+    
+    # Hacer una copia de la matriz de correlación
+    corr_matrix_copy = corr_matrix.copy()
+
+    # Poner los valores de la diagonal a 0 para ignorarlos (correlación de una variable consigo misma)
+    np.fill_diagonal(corr_matrix_copy.values, 0)
+
+    # Filtrar solo las correlaciones positivas
+    corr_matrix_pos = corr_matrix_copy[corr_matrix_copy > 0]
+
+    # Encontrar el par de variables con la correlación positiva más alta
+    max_corr_value = corr_matrix_pos.max().max()  # Valor más alto de correlación positiva
+    max_corr_pair = corr_matrix_pos.stack().idxmax()  # Par de variables con la correlación positiva más alta
+
+    st.write(f"{max_corr_pair}")
+
+    
+    # # Botón para actualizar la selección
+    # if st.button("Actualizar selección"):
+    #     # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
+    #     if set(columnas_seleccionadas_corr) == set(columnas_interes):
+    #         st.success("¡Muy bien! Has seleccionado las  4 columnas que corresponden al consumo de energía.")
+    #         # Mostrar DataFrame filtrado con las últimas  columnas seleccionadas
+    #         st.dataframe(consumption[columnas_seleccionadas_corr])
+    #         st.markdown(f"""
+    #         <div style="text-align: right;">
+    #             <small>Salida generada por <code>consumption[{columnas_seleccionadas_corr}]</code></small>
+    #         </div>
+    #         """, unsafe_allow_html=True)
+
+    #     else:
+    #         st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption' en su nombre.")
+    #         st.dataframe(consumption[columnas_seleccionadas_corr])
+    #         st.markdown(f"""
+    #         <div style="text-align: right;">
+    #             <small>Salida generada por <code>consumption[{columnas_seleccionadas_corr}]</code></small>
+    #         </div>
+    #         """, unsafe_allow_html=True)
 
 
 # Mensaje de cierre del módulo
