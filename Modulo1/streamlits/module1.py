@@ -317,12 +317,24 @@ with st.container():
     corr_matrix = consumption.iloc[:,1:].corr()
 
     sns.heatmap(corr_matrix,
-            annot=True,               # Añadir los valores en cada celda
-            cmap="coolwarm",           # Colores del heatmap
-            xticklabels=corr_matrix.columns.values,  # Etiquetas del eje X
+            annot=True,               
+            cmap="coolwarm",           
+            xticklabels=corr_matrix.columns.values,  
             yticklabels=corr_matrix.columns.values)
 
     st.pyplot(plt)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+        <small>Salida generada por 
+        <code>corr_matrix = consumption.iloc[:,1:].corr()\n
+            sns.heatmap(corr_matrix,
+            annot=True,               
+            cmap="coolwarm",           
+            xticklabels=corr_matrix.columns.values,  
+            yticklabels=corr_matrix.columns.values)</code></small>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 
