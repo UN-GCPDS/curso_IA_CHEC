@@ -6,6 +6,8 @@ import warnings  # Eliminar warnings
 from sklearn.datasets import fetch_california_housing
 warnings.filterwarnings(action="ignore", message="^internal gelsd")
 import io
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 @st.cache_data
 def load_data():
@@ -308,6 +310,20 @@ with st.container():
 
 with st.container():
     st.header("6. Correlación y Covarianza")
+
+    st.write("""La **correlación** nos permite medir la fuerza y dirección de la relación lineal entre dos variables. 
+    """)
+
+    corr_matrix = consumption.corr()
+
+    sns.heatmap(corr_matrix,
+            annot=True,               # Añadir los valores en cada celda
+            cmap="coolwarm",           # Colores del heatmap
+            xticklabels=corr_matrix.columns.values,  # Etiquetas del eje X
+            yticklabels=corr_matrix.columns.values)
+
+    st.pyplot(plt)
+
 
 
 # Mensaje de cierre del módulo
