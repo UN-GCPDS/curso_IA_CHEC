@@ -120,13 +120,13 @@ with st.container():
 
     # Pregunta interactiva sobre la columna 'humidity'
     st.markdown("### Pregunta:")
-    st.markdown("En el histograma de la columna `humidity`, ¿qué valores son más frecuentes?")
+    st.markdown("En el histograma de la columna 'Humidity', ¿qué valores son más frecuentes?")
 
     respuesta = st.radio("Selecciona una opción:", ['Valores mayores a 50', 'Valores menores a 50'])
 
     # Comprobación de la respuesta
-    valores_menores_50 = consumption[consumption['humidity'] < 50]['humidity'].count()
-    valores_mayores_50 = consumption[consumption['humidity'] >= 50]['humidity'].count()
+    valores_menores_50 = consumption[consumption['Humidity'] < 50]['Humidity'].count()
+    valores_mayores_50 = consumption[consumption['Humidity'] >= 50]['Humidity'].count()
 
     if respuesta == 'Valores mayores a 50':
         if valores_mayores_50 > valores_menores_50:
