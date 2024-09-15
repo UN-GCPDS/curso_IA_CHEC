@@ -183,20 +183,18 @@ with st.container():
 
     # Pregunta interactiva sobre la distribución
     st.markdown("### Pregunta:")
-    st.markdown(f"Observa el histograma con KDE para la columna `{columna_seleccionada}`. ¿Cómo describirías la distribución de los datos?")
+    st.markdown(f"Observa el histograma con KDE para la columna 'Temperature'. ¿Cómo describirías la distribución de los datos?")
 
     respuesta_distribucion = st.radio(
         "Selecciona una opción:",
         ['Distribución unimodal', 'Distribución bimodal', 'Distribución uniforme', 'Distribución sesgada a la derecha', 'Distribución sesgada a la izquierda']
     )
 
-    # Validación de la respuesta según el análisis del histograma (ejemplo para 'Temperature')
-    if columna_seleccionada == 'Temperature':
-        # Supongamos que la temperatura tiene una distribución unimodal
-        if respuesta_distribucion == 'Distribución bimodal':
-            st.success("¡Correcto! La distribución de `Temperature` es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
-        else:
-            st.error("Incorrecto. Observa que la distribución de `Temperature` es tiene dos picos.")
+    # Supongamos que la temperatura tiene una distribución unimodal
+    if respuesta_distribucion == 'Distribución bimodal':
+        st.success("¡Correcto! La distribución de `Temperature` es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
+    else:
+        st.error("Incorrecto. Observa que la distribución de `Temperature` es tiene dos picos.")
 
 
 
