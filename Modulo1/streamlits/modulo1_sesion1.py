@@ -250,7 +250,8 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-    st.write("Ahora practiquemos, ¿cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
+    st.markdown("### Pregunta:")
+    st.write("¿Cuál es el valor de PowerConsumption_Zone2 para la fila que tiene índice 15342?")
 
     # Input para el número esperado de valores faltantes
     valor = st.number_input("Introduce el valor:", min_value=0.0, step=0.001, format="%.3f")
@@ -288,6 +289,8 @@ with st.container():
         <small>Salida generada por <code>consumption[{columna_seleccionada_esta}].describe()</code></small>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("### Pregunta:")
 
     st.write("¿Cuál fue la **maxíma temperatura** alcanzada en los registros?")
 
@@ -332,6 +335,8 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("### Pregunta:")
+
     st.write("¿Cuáles son las variables diferentes más correlacionadas **positivamente**? Selecciona los dos nombres.")
 
     columnas_seleccionadas_corr = []
@@ -360,6 +365,8 @@ with st.container():
 
         else:
             st.error("No seleccionaste las 2 variables correctamente. Recuerda que, en este caso, el color puede ser de utilidad (las más rojizas corresponden a valores más altos).")
+
+    st.markdown("### Pregunta:")
 
     st.write("¿Cuáles son las variables diferentes más correlacionadas **negativamente**? Selecciona los dos nombres.")
 
