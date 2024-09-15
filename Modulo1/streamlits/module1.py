@@ -314,7 +314,7 @@ with st.container():
     st.write("""La **correlación** nos permite medir la fuerza y dirección de la relación lineal entre dos variables. 
     """)
 
-    corr_matrix = consumption.corr()
+    corr_matrix = consumption.iloc[:,1:].corr()
 
     sns.heatmap(corr_matrix,
             annot=True,               # Añadir los valores en cada celda
