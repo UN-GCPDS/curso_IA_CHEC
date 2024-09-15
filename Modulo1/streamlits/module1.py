@@ -380,7 +380,7 @@ with st.container():
     # Botón para actualizar la selección
     if st.button("Actualizar selección", key = "button_corr_neg"):
         # Verificar si el usuario ha seleccionado exactamente las últimas tres columnas
-        if set(columnas_seleccionadas_corr) == set(max_corr_pair):
+        if set(columnas_seleccionadas_corr_neg) == set(min_corr_pair):
             st.success(f"¡Muy bien! Has seleccionado las 2 variables más correlacionadas negativamente. {min_corr_pair[0]} y {min_corr_pair[1]} tienen una correlación de {np.round(min_corr_value,2)}")
 
         else:
