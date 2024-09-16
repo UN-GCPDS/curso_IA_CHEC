@@ -261,7 +261,7 @@ st.markdown("### Pregunta:")
 st.markdown(f"Observa el gráfico de dispersión de 'PowerConsumption_Zone1' (en el eje x) vs 'PowerConsumption_Zone2'. ¿Cómo describirías la relación entre las dos variables?")
 
 # Opciones sin seleccionar ninguna por defecto
-opciones_scatter = ['Positiva', 'Negativa', 'Sin relación aparente']
+opciones_scatter = ['Relación positiva', 'Relación negativa', 'Sin relación aparente']
 
 # Crear el radio button sin selección predeterminada
 respuesta_scatter = st.radio("Selecciona una opción:", opciones_scatter)
@@ -270,9 +270,9 @@ respuesta_scatter = st.radio("Selecciona una opción:", opciones_scatter)
 if st.button("Validar relación", key="val_scatter"):
     # Aquí se puede personalizar la respuesta esperada dependiendo de la relación de las columnas seleccionadas
     st.markdown(f"Has seleccionado: {respuesta_scatter}. Observa el gráfico para evaluar si coincide con la relación entre `{columna_x}` y `{columna_y}`.")
-    if respuesta_distribucion == 'Positiva':
+    if respuesta_scatter == 'Relación positiva':
         st.success("¡Correcto! Es una relación positiva.")
     else:
-        st.error("Incorrecto. Observa que a medida que aumenta el valor de 'PowerConsumption_Zone1' también aumenta el valor de 'PowerConsumption_Zone1'")
+        st.error("Incorrecto. Observa que a medida que aumenta el valor de 'PowerConsumption_Zone1' también aumenta el valor de 'PowerConsumption_Zone2'.")
 
 
