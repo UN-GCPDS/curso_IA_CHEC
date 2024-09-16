@@ -215,7 +215,7 @@ opciones = ['Distribución unimodal', 'Distribución bimodal', 'Distribución un
 respuesta_distribucion = st.radio("Selecciona una opción:", opciones)
 
 # Botón para confirmar la respuesta
-if st.button("Validar respuesta"):
+if st.button("Validar respuesta", key="val_dist"):
     # Supongamos que la temperatura tiene una distribución bimodal
     if respuesta_distribucion == 'Distribución bimodal':
         st.success("¡Correcto! La distribución de 'Temperature' es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
