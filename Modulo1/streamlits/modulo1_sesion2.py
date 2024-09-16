@@ -219,60 +219,60 @@ if st.button("Validar respuesta"):
         st.error("Incorrecto. Observa que la distribución de 'Temperature' tiene dos picos.")
 
 
-# # Sección: Gráfico de Dispersión (Scatter plot) con Matplotlib
-# with st.container():
-#     st.header("4. Gráfico de Dispersión con `plt.scatter`")
+# Sección: Gráfico de Dispersión (Scatter plot) con Matplotlib
+with st.container():
+    st.header("4. Gráfico de Dispersión con `plt.scatter`")
 
-#     # Descripción del gráfico de dispersión
-#     st.markdown("""
-#     **¿Qué es un gráfico de dispersión (Scatter plot)?**
+    # Descripción del gráfico de dispersión
+    st.markdown("""
+    **¿Qué es un gráfico de dispersión (Scatter plot)?**
     
-#     Un gráfico de dispersión es una representación gráfica que muestra la relación entre dos variables numéricas.
-#     Cada punto en el gráfico representa un par de valores de las dos variables seleccionadas. 
-#     Es útil para identificar correlaciones, patrones o tendencias entre las variables, como una relación positiva, negativa o ninguna relación.
+    Un gráfico de dispersión es una representación gráfica que muestra la relación entre dos variables numéricas.
+    Cada punto en el gráfico representa un par de valores de las dos variables seleccionadas. 
+    Es útil para identificar correlaciones, patrones o tendencias entre las variables, como una relación positiva, negativa o ninguna relación.
 
-#     - **Relación positiva**: Cuando los valores de ambas variables aumentan.
-#     - **Relación negativa**: Cuando los valores de una variable aumentan mientras que los de la otra disminuyen.
-#     - **Sin relación aparente**: Los puntos están dispersos sin un patrón claro.
-#     """)
+    - **Relación positiva**: Cuando los valores de ambas variables aumentan.
+    - **Relación negativa**: Cuando los valores de una variable aumentan mientras que los de la otra disminuyen.
+    - **Sin relación aparente**: Los puntos están dispersos sin un patrón claro.
+    """)
 
-#     # Seleccionar las dos columnas para el scatter plot
-#     columna_x = st.selectbox('Selecciona la columna para el eje X:', columnas_numericas)
-#     columna_y = st.selectbox('Selecciona la columna para el eje Y:', columnas_numericas)
+    # Seleccionar las dos columnas para el scatter plot
+    columna_x = st.selectbox('Selecciona la columna para el eje X:', columnas_numericas)
+    columna_y = st.selectbox('Selecciona la columna para el eje Y:', columnas_numericas)
 
-#     # Mostrar el scatter plot
-#     fig_scatter, ax_scatter = plt.subplots()
-#     ax_scatter.scatter(consumption.head(10000)[columna_x], consumption.head(10000)[columna_y], color='blue', alpha=0.6)
-#     ax_scatter.set_title(f'Dispersión de {columna_x} vs {columna_y}')
-#     ax_scatter.set_xlabel(columna_x)
-#     ax_scatter.set_ylabel(columna_y)
+    # Mostrar el scatter plot
+    fig_scatter, ax_scatter = plt.subplots()
+    ax_scatter.scatter(consumption.head(10000)[columna_x], consumption.head(10000)[columna_y], color='blue', alpha=0.6)
+    ax_scatter.set_title(f'Dispersión de {columna_x} vs {columna_y}')
+    ax_scatter.set_xlabel(columna_x)
+    ax_scatter.set_ylabel(columna_y)
 
-#     # Mostrar la gráfica en la app
-#     st.pyplot(fig_scatter)
+    # Mostrar la gráfica en la app
+    st.pyplot(fig_scatter)
 
-#     st.markdown(f"""
-#     <div style="text-align: right;">
-#     <small> Salida generada por <code>plt.scatter({columna_x}, {columna_y})</code></small>
-#     </div>
-#     """, unsafe_allow_html=True)
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small> Salida generada por <code>plt.scatter({columna_x}, {columna_y})</code></small>
+    </div>
+    """, unsafe_allow_html=True)
 
-# # Sección: Pregunta interactiva sobre el gráfico de dispersión
-# st.markdown("### Pregunta:")
-# st.markdown(f"Observa el gráfico de dispersión de 'PowerConsumption_Zone1' (en el eje x) vs 'PowerConsumption_Zone2'. ¿Cómo describirías la relación entre las dos variables?")
+# Sección: Pregunta interactiva sobre el gráfico de dispersión
+st.markdown("### Pregunta:")
+st.markdown(f"Observa el gráfico de dispersión de 'PowerConsumption_Zone1' (en el eje x) vs 'PowerConsumption_Zone2'. ¿Cómo describirías la relación entre las dos variables?")
 
-# # Opciones sin seleccionar ninguna por defecto
-# opciones_scatter = ['Relación positiva', 'Relación negativa', 'Sin relación aparente']
+# Opciones sin seleccionar ninguna por defecto
+opciones_scatter = ['Relación positiva', 'Relación negativa', 'Sin relación aparente']
 
-# # Crear el radio button sin selección predeterminada
-# respuesta_scatter = st.radio("Selecciona una opción:", opciones_scatter)
+# Crear el radio button sin selección predeterminada
+respuesta_scatter = st.radio("Selecciona una opción:", opciones_scatter)
 
-# # Botón para confirmar la respuesta
-# if st.button("Validar relación", key="val_scatter"):
-#     # Aquí se puede personalizar la respuesta esperada dependiendo de la relación de las columnas seleccionadas
-#     st.markdown(f"Has seleccionado: {respuesta_scatter}. Observa el gráfico para evaluar si coincide con la relación entre `{columna_x}` y `{columna_y}`.")
-#     if respuesta_scatter == 'Relación positiva':
-#         st.success("¡Correcto! Es una relación positiva.")
-#     else:
-#         st.error("Incorrecto. Observa que a medida que aumenta el valor de 'PowerConsumption_Zone1' también aumenta el valor de 'PowerConsumption_Zone2'.")
+# Botón para confirmar la respuesta
+if st.button("Validar relación", key="val_scatter"):
+    # Aquí se puede personalizar la respuesta esperada dependiendo de la relación de las columnas seleccionadas
+    st.markdown(f"Has seleccionado: {respuesta_scatter}. Observa el gráfico para evaluar si coincide con la relación entre `{columna_x}` y `{columna_y}`.")
+    if respuesta_scatter == 'Relación positiva':
+        st.success("¡Correcto! Es una relación positiva.")
+    else:
+        st.error("Incorrecto. Observa que a medida que aumenta el valor de 'PowerConsumption_Zone1' también aumenta el valor de 'PowerConsumption_Zone2'.")
 
 
