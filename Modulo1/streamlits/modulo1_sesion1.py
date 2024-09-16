@@ -136,7 +136,7 @@ with st.container():
             st.success(f"Muy bien, los valores faltantes en la columna '{col_name}' son {missing_values}")
         else:
             # Mostrar el número real de valores faltantes
-            st.write(f"El número de valores faltantes es incorrecto. Recuerda que debes tomar el valor total de valores y restarle la cantidad de no nulos de la columna '{col_name}'")
+            st.error(f"El número de valores faltantes es incorrecto. Recuerda que debes tomar el valor total de valores y restarle la cantidad de no nulos de la columna '{col_name}'")
 
 
 
