@@ -353,7 +353,7 @@ with st.container():
 
     # Mostrar el boxplot
     fig_boxplot, ax_boxplot = plt.subplots()
-    ax_boxplot.boxplot(consumption.head(10000)[columna_boxplot], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'))
+    ax_boxplot.boxplot(consumption[columna_boxplot], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'))
     ax_boxplot.set_title(f'Distribución de {columna_boxplot}')
     ax_boxplot.set_xlabel(columna_boxplot)
 
