@@ -275,38 +275,38 @@ if st.button("Validar relación", key="val_scatter"):
     else:
         st.error("Incorrecto. Observa que a medida que aumenta el valor de 'PowerConsumption_Zone1' también aumenta el valor de 'PowerConsumption_Zone2'.")
 
-# Sección: Diagrama de Pastel para cualquier columna seleccionada
-with st.container():
-    st.header("5. Diagrama de Pastel con `plt.pie`")
+# # Sección: Diagrama de Pastel para cualquier columna seleccionada
+# with st.container():
+#     st.header("5. Diagrama de Pastel con `plt.pie`")
 
-    # Descripción del diagrama de pastel
-    st.markdown("""
-    **¿Qué es un diagrama de pastel?**
+#     # Descripción del diagrama de pastel
+#     st.markdown("""
+#     **¿Qué es un diagrama de pastel?**
     
-    Un diagrama de pastel es una representación gráfica que muestra la proporción de diferentes categorías en un conjunto de datos. 
-    Cada porción del pastel representa una categoría y su tamaño es proporcional a la cantidad que representa en el total.
+#     Un diagrama de pastel es una representación gráfica que muestra la proporción de diferentes categorías en un conjunto de datos. 
+#     Cada porción del pastel representa una categoría y su tamaño es proporcional a la cantidad que representa en el total.
 
-    Es útil para visualizar cómo se distribuyen las categorías en un conjunto de datos.
-    """)
+#     Es útil para visualizar cómo se distribuyen las categorías en un conjunto de datos.
+#     """)
 
-    # Seleccionar la columna para el diagrama de pastel
-    columna_pastel = st.selectbox('Selecciona la columna para el diagrama de pastel:', consumption.columns)
+#     # Seleccionar la columna para el diagrama de pastel
+#     columna_pastel = st.selectbox('Selecciona la columna para el diagrama de pastel:', consumption.columns)
 
-    # Mostrar el diagrama de pastel
-    fig_pie, ax_pie = plt.subplots()
-    valores = consumption[columna_pastel].value_counts()
-    ax_pie.pie(valores, labels=valores.index, autopct='%1.1f%%', startangle=90)
-    ax_pie.axis('equal')  # Para asegurar que el pastel sea circular
-    ax_pie.set_title(f'Diagrama de Pastel de {columna_pastel}')
+#     # Mostrar el diagrama de pastel
+#     fig_pie, ax_pie = plt.subplots()
+#     valores = consumption[columna_pastel].value_counts()
+#     ax_pie.pie(valores, labels=valores.index, autopct='%1.1f%%', startangle=90)
+#     ax_pie.axis('equal')  # Para asegurar que el pastel sea circular
+#     ax_pie.set_title(f'Diagrama de Pastel de {columna_pastel}')
 
-    # Mostrar la gráfica en la app
-    st.pyplot(fig_pie)
+#     # Mostrar la gráfica en la app
+#     st.pyplot(fig_pie)
 
-    st.markdown(f"""
-    <div style="text-align: right;">
-    <small> Salida generada por <code>plt.pie(valores)</code></small>
-    </div>
-    """, unsafe_allow_html=True)
+#     st.markdown(f"""
+#     <div style="text-align: right;">
+#     <small> Salida generada por <code>plt.pie(valores)</code></small>
+#     </div>
+#     """, unsafe_allow_html=True)
 
 # Sección: Diagrama de Pastel de "Temperature" discretizado
 with st.container():
