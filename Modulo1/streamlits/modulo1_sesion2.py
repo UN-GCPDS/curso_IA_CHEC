@@ -330,57 +330,56 @@ with st.container():
         else:
             st.error(f"Incorrecto. El rango con menor representación es el más pequeño en la gráfica de pastel.")
 
-# Sección: Gráfico Boxplot con Matplotlib
+# Sección: Gráfico Boxplot con Plotly Express
 with st.container():
-    st.header("4. Gráfico Boxplot con `plt.boxplot`")
+    st.header("4. Gráfico Boxplot con `px.box`")
 
-    # Descripción del gráfico boxplot
+    # Descripción del boxplot
     st.markdown("""
-    Un **boxplot** es una herramienta gráfica que permite visualizar la distribución de una variable numérica,
-    resumiendo cinco características importantes de la misma: mínimo, primer cuartil (Q1), mediana, tercer cuartil (Q3) y máximo.
-    También ayuda a identificar posibles valores atípicos (outliers) en los datos.
+        
+    Un gráfico de caja o **boxplot** es una visualización gráfica que resume la distribución de un conjunto de datos numéricos a través de sus cuartiles. 
+    Es útil para identificar valores atípicos, la dispersión y la simetría en la distribución de los datos.
 
-    - **Mínimo**: El valor más bajo que no es un atípico.
-    - **Primer cuartil (Q1)**: El valor que marca el 25% de los datos.
-    - **Mediana**: El valor central de los datos, donde el 50% de los datos son menores y el otro 50% son mayores.
-    - **Tercer cuartil (Q3)**: El valor que marca el 75% de los datos.
-    - **Máximo**: El valor más alto que no es un atípico.
-    - **Valores atípicos**: Puntos que se encuentran por encima o por debajo de los límites esperados.
+    Los elementos principales del boxplot son:
+
+    - **Caja**: Representa el rango intercuartílico (IQR), que va desde el primer cuartil (Q1) hasta el tercer cuartil (Q3). La línea dentro de la caja indica la mediana.
+    - **Bigotes**: Extienden desde los cuartiles hacia los valores mínimos y máximos dentro de 1.5 veces el IQR.
+    - **Puntos fuera de los bigotes**: Son considerados valores atípicos.
+
+    El **boxplot** permite comparar la dispersión y los valores atípicos de diferentes columnas o grupos en los datos.
     """)
 
-    # Seleccionar la columna numérica para el boxplot
+    # Seleccionar la columna para el boxplot
     columna_boxplot = st.selectbox('Selecciona la columna para el boxplot:', columnas_numericas)
 
     # Mostrar el boxplot
-    fig_boxplot, ax_boxplot = plt.subplots()
-    ax_boxplot.boxplot(consumption[columna_boxplot], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'))
-    ax_boxplot.set_title(f'Distribución de {columna_boxplot}')
-    ax_boxplot.set_xlabel(columna_boxplot)
+    fig_boxplot = px.box(consumption.head(10000), y=columna_boxplot, points="all")
+    fig_boxplot.update_layout(title=f'Boxplot de {columna_boxplot}', yaxis_title=columna_boxplot)
 
     # Mostrar la gráfica en la app
-    st.pyplot(fig_boxplot)
+    st.plotly_chart(fig_boxplot)
 
     st.markdown(f"""
     <div style="text-align: right;">
-    <small> Salida generada por <code>plt.boxplot({columna_boxplot})</code></small>
+    <small>Salida generada por <code>px.box(consumption, y='{columna_boxplot}')</code></small>
     </div>
     """, unsafe_allow_html=True)
 
-# Pregunta interactiva sobre el gráfico boxplot
+# Pregunta interactiva sobre el boxplot
 st.markdown("### Pregunta:")
-st.markdown(f"Observa el gráfico boxplot de '{columna_boxplot}'. ¿Ves algún valor atípico?")
+st.markdown(f"Observa el boxplot de la columna '{columna_boxplot}'. ¿Qué puedes decir sobre los datos?")
 
-# Opciones sin seleccionar ninguna por defecto
-opciones_boxplot = ['Sí, hay valores atípicos', 'No, no hay valores atípicos']
+# Opciones de análisis del boxplot
+opciones_boxplot = ['Distribución simétrica', 'Distribución asimétrica', 'Presencia de valores atípicos', 'Sin valores atípicos']
 
 # Crear el radio button sin selección predeterminada
 respuesta_boxplot = st.radio("Selecciona una opción:", opciones_boxplot)
 
 # Botón para confirmar la respuesta
-if st.button("Validar valores atípicos", key="val_boxplot"):
-    # Aquí se puede personalizar la respuesta dependiendo de la columna seleccionada
-    st.markdown(f"Has seleccionado: {respuesta_boxplot}. Observa el gráfico para evaluar si la selección es correcta.")
-    if respuesta_boxplot == 'Sí, hay valores atípicos':
-        st.success("¡Correcto! Existen valores atípicos visibles.")
+if st.button("Validar análisis", key="val_boxplot"):
+    # Aquí puedes personalizar la respuesta esperada dependiendo de la columna seleccionada
+    st.markdown(f"Has seleccionado: {respuesta_boxplot}. Observa el gráfico para evaluar si coincide con la distribución de `{columna_boxplot}`.")
+    if respuesta_boxplot == 'Presencia de valores atípicos':
+        st.success("¡Correcto! Se observan valores atípicos.")
     else:
-        st.error(f"Incorrecto. Parece que hay valores fuera del rango esperado en {columna_boxplot}.")
+        st.warning("Revisa nuevamente los datos en el boxplot, quizás haya otros aspectos importantes que notar.")
