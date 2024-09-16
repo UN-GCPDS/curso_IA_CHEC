@@ -191,6 +191,13 @@ with st.container():
     # Mostrar la gráfica KDE pura en la app
     st.pyplot(fig_kde)
 
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small> Salida generada por <code>sns.kdeplot(consumption[{columna_seleccionada}])</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+
     st.markdown("""
     Además del histograma, también podemos visualizar solo la curva que estima la densidad de los datos (KDE). 
     Esta curva nos permite observar la forma de la distribución de los valores de una manera más suave, sin la segmentación en bins que tiene el histograma. 
