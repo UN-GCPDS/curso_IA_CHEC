@@ -276,3 +276,46 @@ if st.button("Validar relación", key="val_scatter"):
         st.error("Incorrecto. Observa que a medida que aumenta el valor de 'PowerConsumption_Zone1' también aumenta el valor de 'PowerConsumption_Zone2'.")
 
 
+# Sección: Diagrama de Pastel de "Temperature" discretizado
+with st.container():
+    st.header("6. Diagrama de Pastel de `Temperature` Discretizado")
+
+    # Discretizar la columna "Temperature" en rangos de 10 grados
+    bins_temp = range(int(consumption['Temperature'].min()), int(consumption['Temperature'].max()) + 10, 10)
+
+    # Generar las etiquetas para cada intervalo automáticamente
+    labels_temp = pd.IntervalIndex.from_breaks(bins_temp).astype(str)
+
+    # Aplicar pd.cut() para discretizar los valores de 'Temperature' en 'Temperature_Rango'
+    consumption['Temperature_Rango'] = pd.cut(consumption['Temperature'], bins=bins_temp, labels=labels_temp, right=False)
+
+    # Mostrar el diagrama de pastel para la temperatura discretizada
+    fig_pie_temp, ax_pie_temp = plt.subplots()
+    valores_temp = consumption['Temperature_Rango'].value_counts()
+    ax_pie_temp.pie(valores_temp, labels=valores_temp.index, autopct='%1.1f%%', startangle=90)
+    ax_pie_temp.axis('equal')  # Para asegurar que el pastel sea circular
+    ax_pie_temp.set_title('Diagrama de Pastel de Temperatura Discretizada')
+
+    # Mostrar la gráfica en la app
+    st.pyplot(fig_pie_temp)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small> Salida generada por <code>plt.pie(valores_temp)</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Pregunta sobre el rango de menor representación
+    st.markdown("### Pregunta:")
+    st.markdown("¿Cuál es el rango de temperatura con menor representación en el diagrama de pastel?")
+
+    # Crear opciones basadas en los rangos de temperatura
+    opciones_temp = labels_temp
+
+    # Crear el radio button para seleccionar el rango
+    respuesta_temp = st.radio("Selecciona una opción:", opciones_temp)
+
+    # Botón para confirmar la respuesta
+    if st.button("Validar respuesta"):
+        # Aquí puedes personalizar la respuesta esperada dependiendo de los datos
+        st.markdown(f"Has seleccionado: {respuesta_temp}. Observa el diagrama para evaluar si coincide con el rango de menor representación.")
