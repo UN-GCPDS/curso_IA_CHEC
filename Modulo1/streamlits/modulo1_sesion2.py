@@ -278,7 +278,16 @@ if st.button("Validar relación", key="val_scatter"):
 
 # Sección: Diagrama de Pastel de "Temperature" discretizado
 with st.container():
-    st.header("6. Diagrama de Pastel de `Temperature` Discretizado")
+    st.header("6. Diagrama de Pastel de Temperatura")
+
+    st.write("""
+    El diagrama de pastel es una representación gráfica que muestra la proporción de distintas categorías dentro de un conjunto de datos.
+    Cada porción del gráfico representa una categoría y su tamaño refleja la proporción que esta categoría ocupa respecto al total. 
+    Es útil para visualizar cómo se distribuyen los datos en diferentes grupos o categorías.
+
+    En este caso, no contamos con variables categóricas en su forma original, por lo que vamos a dividir los valores de la columna de temperatura en rangos de 10 grados. 
+    Así podremos observar cómo se distribuyen los datos de temperatura en diferentes intervalos.
+    """)
 
     # Discretizar la columna "Temperature" en rangos de 10 grados
     bins_temp = range(int(consumption['Temperature'].min()), int(consumption['Temperature'].max()) + 10, 10)
@@ -307,7 +316,7 @@ with st.container():
 
     # Pregunta sobre el rango de menor representación
     st.markdown("### Pregunta:")
-    st.markdown("¿Cuál es el rango de temperatura con menor representación en el diagrama de pastel?")
+    st.markdown("Observa el diagrama de pastel. ¿Cuál de los siguientes rangos de temperatura tiene la menor representación?")
 
     # Crear opciones basadas en los rangos de temperatura
     opciones_temp = labels_temp
@@ -317,5 +326,7 @@ with st.container():
 
     # Botón para confirmar la respuesta
     if st.button("Validar respuesta", key="validar_pastel"):
-        # Aquí puedes personalizar la respuesta esperada dependiendo de los datos
-        st.markdown(f"Has seleccionado: {respuesta_temp}. Observa el diagrama para evaluar si coincide con el rango de menor representación.")
+        if respuesta_temp == opciones_temp[-1]:  # La última opción es la correcta
+            st.success(f"¡Correcto! El rango {respuesta_temp} tiene la menor representación en el diagrama de pastel.")
+        else:
+            st.error(f"Incorrecto. El rango con menor representación es {opciones_temp[-1]}.")
