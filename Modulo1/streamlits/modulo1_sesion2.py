@@ -354,7 +354,7 @@ with st.container():
     columna_boxplot = st.selectbox('Selecciona la columna para el boxplot:', columnas_numericas)
 
     # Mostrar el boxplot
-    fig_boxplot = px.box(consumption.head(np.randint(0,len(consumption), 5000)), y=columna_boxplot, points="all")
+    fig_boxplot = px.box(consumption.head(np.random.randint(0,len(consumption), 5000)), y=columna_boxplot, points="all")
     fig_boxplot.update_layout(title=f'Boxplot de {columna_boxplot}', yaxis_title=columna_boxplot)
 
     # Mostrar la gráfica en la app
