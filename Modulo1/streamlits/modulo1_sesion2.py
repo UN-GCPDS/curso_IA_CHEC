@@ -418,7 +418,7 @@ with st.container():
 
 # Pregunta interactiva sobre el gráfico de violín
 st.markdown("### Pregunta:")
-st.markdown("""Observa el gráfico de violín de la columna 'PowerConsumption_Zone3'. Teniendo en cuenta que Una distribución 
+st.markdown("""Observa el gráfico de violín de la columna 'PowerConsumption_Zone3'. Teniendo en cuenta que una distribución 
 simétrica significa que los datos están distribuidos de manera equilibrada alrededor de la mediana y la distribución asimétrica el caso contrario. ¿Qué puedes decir sobre los datos?""")
 
 # Opciones de análisis del diagrama de violín
