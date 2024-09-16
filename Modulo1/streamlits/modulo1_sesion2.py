@@ -134,12 +134,7 @@ with st.container():
             if valores_mayores_50 > valores_menores_50:
                 st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
             else:
-                st.error("Incorrecto. Los valores menores a 50 son más frecuentes.")
-        elif respuesta == 'Valores menores a 50':
-            if valores_menores_50 > valores_mayores_50:
-                st.success("¡Correcto! Los valores menores a 50 son más frecuentes.")
-            else:
-                st.error("Incorrecto. Los valores mayores a 50 son más frecuentes.")
+                st.error("Incorrecto. Observa en qué parte del histograma se encuentran las barras más altas.")
 
 # Sección: Histograma con Seaborn y KDE
 with st.container():
