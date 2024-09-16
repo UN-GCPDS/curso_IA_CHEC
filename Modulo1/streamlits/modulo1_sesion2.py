@@ -290,7 +290,7 @@ with st.container():
     """)
 
     # Seleccionar la columna para el diagrama de pastel
-    columna_pastel = st.selectbox('Selecciona la columna para el diagrama de pastel:', columnas_categóricas)
+    columna_pastel = st.selectbox('Selecciona la columna para el diagrama de pastel:', consumption.columns)
 
     # Mostrar el diagrama de pastel
     fig_pie, ax_pie = plt.subplots()
