@@ -8,6 +8,7 @@ warnings.filterwarnings(action="ignore", message="^internal gelsd")
 import io
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 @st.cache_data
 def load_data():
