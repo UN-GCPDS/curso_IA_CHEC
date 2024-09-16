@@ -225,8 +225,7 @@ with st.container():
 
     # Descripción del gráfico de dispersión
     st.markdown("""
-    **¿Qué es un gráfico de dispersión (Scatter plot)?**
-    
+        
     Un gráfico de dispersión es una representación gráfica que muestra la relación entre dos variables numéricas.
     Cada punto en el gráfico representa un par de valores de las dos variables seleccionadas. 
     Es útil para identificar correlaciones, patrones o tendencias entre las variables, como una relación positiva, negativa o ninguna relación.
@@ -256,7 +255,7 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-# Sección: Pregunta interactiva sobre el gráfico de dispersión
+#Pregunta interactiva sobre el gráfico de dispersión
 st.markdown("### Pregunta:")
 st.markdown(f"Observa el gráfico de dispersión de 'PowerConsumption_Zone1' (en el eje x) vs 'PowerConsumption_Zone2'. ¿Cómo describirías la relación entre las dos variables?")
 
@@ -327,6 +326,61 @@ with st.container():
     # Botón para confirmar la respuesta
     if st.button("Validar respuesta", key="validar_pastel"):
         if respuesta_temp == opciones_temp[-1]:  # La última opción es la correcta
-            st.success(f"¡Correcto! El rango {respuesta_temp} tiene la menor representación en el diagrama de pastel.")
+            st.success(f"¡Correcto! El rango {respuesta_temp} tiene la menor representación en la temperatura según el diagrama de pastel.")
         else:
-            st.error(f"Incorrecto. El rango con menor representación es el más pequeño en la gráfica de pastel..")
+            st.error(f"Incorrecto. El rango con menor representación es el más pequeño en la gráfica de pastel.")
+
+# Sección: Gráfico Boxplot con Matplotlib
+with st.container():
+    st.header("4. Gráfico Boxplot con `plt.boxplot`")
+
+    # Descripción del gráfico boxplot
+    st.markdown("""
+    Un **boxplot** es una herramienta gráfica que permite visualizar la distribución de una variable numérica,
+    resumiendo cinco características importantes de la misma: mínimo, primer cuartil (Q1), mediana, tercer cuartil (Q3) y máximo.
+    También ayuda a identificar posibles valores atípicos (outliers) en los datos.
+
+    - **Mínimo**: El valor más bajo que no es un atípico.
+    - **Primer cuartil (Q1)**: El valor que marca el 25% de los datos.
+    - **Mediana**: El valor central de los datos, donde el 50% de los datos son menores y el otro 50% son mayores.
+    - **Tercer cuartil (Q3)**: El valor que marca el 75% de los datos.
+    - **Máximo**: El valor más alto que no es un atípico.
+    - **Valores atípicos**: Puntos que se encuentran por encima o por debajo de los límites esperados.
+    """)
+
+    # Seleccionar la columna numérica para el boxplot
+    columna_boxplot = st.selectbox('Selecciona la columna para el boxplot:', columnas_numericas)
+
+    # Mostrar el boxplot
+    fig_boxplot, ax_boxplot = plt.subplots()
+    ax_boxplot.boxplot(consumption.head(10000)[columna_boxplot], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'))
+    ax_boxplot.set_title(f'Distribución de {columna_boxplot}')
+    ax_boxplot.set_xlabel(columna_boxplot)
+
+    # Mostrar la gráfica en la app
+    st.pyplot(fig_boxplot)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small> Salida generada por <code>plt.boxplot({columna_boxplot})</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Pregunta interactiva sobre el gráfico boxplot
+st.markdown("### Pregunta:")
+st.markdown(f"Observa el gráfico boxplot de '{columna_boxplot}'. ¿Ves algún valor atípico?")
+
+# Opciones sin seleccionar ninguna por defecto
+opciones_boxplot = ['Sí, hay valores atípicos', 'No, no hay valores atípicos']
+
+# Crear el radio button sin selección predeterminada
+respuesta_boxplot = st.radio("Selecciona una opción:", opciones_boxplot)
+
+# Botón para confirmar la respuesta
+if st.button("Validar valores atípicos", key="val_boxplot"):
+    # Aquí se puede personalizar la respuesta dependiendo de la columna seleccionada
+    st.markdown(f"Has seleccionado: {respuesta_boxplot}. Observa el gráfico para evaluar si la selección es correcta.")
+    if respuesta_boxplot == 'Sí, hay valores atípicos':
+        st.success("¡Correcto! Existen valores atípicos visibles.")
+    else:
+        st.error(f"Incorrecto. Parece que hay valores fuera del rango esperado en {columna_boxplot}.")
