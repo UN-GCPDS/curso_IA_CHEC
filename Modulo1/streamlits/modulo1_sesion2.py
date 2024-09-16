@@ -242,7 +242,7 @@ with st.container():
 
     # Mostrar el scatter plot
     fig_scatter, ax_scatter = plt.subplots()
-    ax_scatter.scatter(consumption[columna_x], consumption[columna_y], color='blue', alpha=0.6)
+    ax_scatter.scatter(consumption.head(10000)[columna_x], consumption.head(10000)[columna_y], color='blue', alpha=0.6)
     ax_scatter.set_title(f'Dispersión de {columna_x} vs {columna_y}')
     ax_scatter.set_xlabel(columna_x)
     ax_scatter.set_ylabel(columna_y)
@@ -258,7 +258,7 @@ with st.container():
 
 # Sección: Pregunta interactiva sobre el gráfico de dispersión
 st.markdown("### Pregunta:")
-st.markdown(f"Observa el gráfico de dispersión de `{columna_x}` vs `{columna_y}`. ¿Cómo describirías la relación entre las dos variables?")
+st.markdown(f"Observa el gráfico de dispersión de '' (en el eje x) vs 'PowerConsumption_Zone1'. ¿Cómo describirías la relación entre las dos variables?")
 
 # Opciones sin seleccionar ninguna por defecto
 opciones_scatter = ['Relación positiva', 'Relación negativa', 'Sin relación aparente']
