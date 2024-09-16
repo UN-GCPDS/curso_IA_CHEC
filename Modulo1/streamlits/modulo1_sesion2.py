@@ -313,8 +313,13 @@ with st.container():
     st.header("6. Diagrama de Pastel de `Temperature` Discretizado")
 
     # Discretizar la columna "Temperature" en rangos de 10 grados
+    # Crear los intervalos (bins) basados en el mínimo y máximo de la columna 'Temperature'
     bins_temp = range(int(consumption['Temperature'].min()), int(consumption['Temperature'].max()) + 10, 10)
-    labels_temp = [f'{i} - {i + 10}' for i in bins_temp[:-1]]
+
+    # Generar las etiquetas para cada intervalo automáticamente
+    labels_temp = pd.IntervalIndex.from_breaks(bins_temp).astype(str)
+
+    # Aplicar pd.cut() para discretizar los valores de 'Temperature' en 'Temperature_Rango'
     consumption['Temperature_Rango'] = pd.cut(consumption['Temperature'], bins=bins_temp, labels=labels_temp, right=False)
 
     # Mostrar el diagrama de pastel para la temperatura discretizada
