@@ -383,3 +383,57 @@ if st.button("Validar análisis", key="val_boxplot"):
         st.success("¡Correcto! Se observan valores atípicos.")
     else:
         st.error("Revisa nuevamente los datos en el boxplot, quizás haya otros aspectos importantes que notar.")
+
+# Sección: Gráfico de Violín con Plotly Express
+with st.container():
+    st.header("8. Gráfico de Violín con `px.violin`")
+
+    # Descripción del diagrama de violín
+    st.markdown("""
+    
+    Un **gráfico de violín** es una visualización que combina características del gráfico de caja (boxplot) y un gráfico de densidad. 
+    Muestra la distribución de los datos numéricos y también su densidad (frecuencia) a lo largo de los valores. 
+    Es útil para entender mejor la forma de la distribución, su asimetría, y la presencia de múltiples picos en los datos.
+
+    Los elementos principales del diagrama de violín son:
+
+    - **Cuerpo del violín**: Representa una estimación de la densidad de los datos, mostrando las frecuencias relativas.
+    - **Mediana y cuartiles**: Al igual que en un boxplot, se pueden mostrar la mediana y los cuartiles dentro del gráfico.
+    - **Distribución bimodal o multimodal**: A diferencia del boxplot, el gráfico de violín puede indicar si los datos tienen más de un pico o modo en la distribución.
+
+    Este gráfico proporciona información adicional sobre la distribución de los datos, más allá de lo que muestra un boxplot.
+    """)
+
+    # Seleccionar la columna para el gráfico de violín
+    columna_violin = st.selectbox('Selecciona la columna para el gráfico de violín:', columnas_numericas)
+
+    # Mostrar el gráfico de violín
+    fig_violin = px.violin(consumption.iloc[np.random.randint(0,len(consumption), 5000)], y=columna_violin, box=True, points="all")
+    fig_violin.update_layout(title=f'Gráfico de Violín de {columna_violin}', yaxis_title=columna_violin)
+
+    # Mostrar la gráfica en la app
+    st.plotly_chart(fig_violin)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small>Salida generada por <code>px.violin(consumption, y='{columna_violin}', box=True, points="all")</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Pregunta interactiva sobre el gráfico de violín
+st.markdown("### Pregunta:")
+st.markdown(f"Observa el gráfico de violín de la columna '{columna_violin}'. ¿Qué puedes decir sobre los datos?")
+
+# Opciones de análisis del diagrama de violín
+opciones_violin = ['Distribución simétrica', 'Distribución asimétrica', 'Distribución bimodal o multimodal']
+
+# Crear el radio button sin selección predeterminada
+respuesta_violin = st.radio("Selecciona una opción:", opciones_violin)
+
+# Botón para confirmar la respuesta
+if st.button("Validar análisis", key="val_violin"):
+    # Aquí puedes personalizar la respuesta esperada dependiendo de la columna seleccionada
+    if respuesta_violin == 'Distribución bimodal o multimodal':
+        st.success("¡Correcto! La distribución parece tener más de un pico.")
+    else:
+        st.warning("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución.")
