@@ -129,16 +129,17 @@ with st.container():
     valores_menores_50 = consumption[consumption['Humidity'] < 50]['Humidity'].count()
     valores_mayores_50 = consumption[consumption['Humidity'] >= 50]['Humidity'].count()
 
-    if respuesta == 'Valores mayores a 50':
-        if valores_mayores_50 > valores_menores_50:
-            st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
-        else:
-            st.error("Incorrecto. Los valores menores a 50 son más frecuentes.")
-    elif respuesta == 'Valores menores a 50':
-        if valores_menores_50 > valores_mayores_50:
-            st.success("¡Correcto! Los valores menores a 50 son más frecuentes.")
-        else:
-            st.error("Incorrecto. Los valores mayores a 50 son más frecuentes.")
+    if st.button("Validar respuesta", key="val_hist"):
+        if respuesta == 'Valores mayores a 50':
+            if valores_mayores_50 > valores_menores_50:
+                st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
+            else:
+                st.error("Incorrecto. Los valores menores a 50 son más frecuentes.")
+        elif respuesta == 'Valores menores a 50':
+            if valores_menores_50 > valores_mayores_50:
+                st.success("¡Correcto! Los valores menores a 50 son más frecuentes.")
+            else:
+                st.error("Incorrecto. Los valores mayores a 50 son más frecuentes.")
 
 # Sección: Histograma con Seaborn y KDE
 with st.container():
