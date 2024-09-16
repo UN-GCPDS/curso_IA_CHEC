@@ -422,10 +422,11 @@ with st.container():
 
 # Pregunta interactiva sobre el gráfico de violín
 st.markdown("### Pregunta:")
-st.markdown(f"Observa el gráfico de violín de la columna '{columna_violin}'. ¿Qué puedes decir sobre los datos?")
+st.markdown("""Observa el gráfico de violín de la columna 'PowerConsumption_Zone3'. Teniendo en cuenta que Una distribución 
+simétrica significa que los datos están distribuidos de manera equilibrada alrededor de la mediana y la distribución asimétrica el caso contrario. ¿Qué puedes decir sobre los datos?""")
 
 # Opciones de análisis del diagrama de violín
-opciones_violin = ['Distribución simétrica', 'Distribución asimétrica', 'Distribución bimodal o multimodal']
+opciones_violin = ['Distribución simétrica', 'Distribución asimétrica']
 
 # Crear el radio button sin selección predeterminada
 respuesta_violin = st.radio("Selecciona una opción:", opciones_violin)
@@ -433,7 +434,7 @@ respuesta_violin = st.radio("Selecciona una opción:", opciones_violin)
 # Botón para confirmar la respuesta
 if st.button("Validar análisis", key="val_violin"):
     # Aquí puedes personalizar la respuesta esperada dependiendo de la columna seleccionada
-    if respuesta_violin == 'Distribución bimodal o multimodal':
-        st.success("¡Correcto! La distribución parece tener más de un pico.")
+    if respuesta_violin == 'Distribución asimétrica':
+        st.success("¡Correcto! La distribución es asimétrica.")
     else:
-        st.warning("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución.")
+        st.warning("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución. bserva que no es igual arriba y abajo.")
