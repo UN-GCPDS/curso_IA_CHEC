@@ -8,6 +8,7 @@ warnings.filterwarnings(action="ignore", message="^internal gelsd")
 import io
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 @st.cache_data
 def load_data():
@@ -128,16 +129,12 @@ with st.container():
     valores_menores_50 = consumption[consumption['Humidity'] < 50]['Humidity'].count()
     valores_mayores_50 = consumption[consumption['Humidity'] >= 50]['Humidity'].count()
 
-    if respuesta == 'Valores mayores a 50':
-        if valores_mayores_50 > valores_menores_50:
-            st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
-        else:
-            st.error("Incorrecto. Los valores menores a 50 son más frecuentes.")
-    elif respuesta == 'Valores menores a 50':
-        if valores_menores_50 > valores_mayores_50:
-            st.success("¡Correcto! Los valores menores a 50 son más frecuentes.")
-        else:
-            st.error("Incorrecto. Los valores mayores a 50 son más frecuentes.")
+    if st.button("Validar respuesta", key="val_hist"):
+        if respuesta == 'Valores mayores a 50':
+            if valores_mayores_50 > valores_menores_50:
+                st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
+            else:
+                st.error("Incorrecto. Observa en qué parte del histograma se encuentran las barras más altas.")
 
 # Sección: Histograma con Seaborn y KDE
 with st.container():
@@ -225,8 +222,7 @@ with st.container():
 
     # Descripción del gráfico de dispersión
     st.markdown("""
-    **¿Qué es un gráfico de dispersión (Scatter plot)?**
-    
+        
     Un gráfico de dispersión es una representación gráfica que muestra la relación entre dos variables numéricas.
     Cada punto en el gráfico representa un par de valores de las dos variables seleccionadas. 
     Es útil para identificar correlaciones, patrones o tendencias entre las variables, como una relación positiva, negativa o ninguna relación.
@@ -256,7 +252,7 @@ with st.container():
     </div>
     """, unsafe_allow_html=True)
 
-# Sección: Pregunta interactiva sobre el gráfico de dispersión
+#Pregunta interactiva sobre el gráfico de dispersión
 st.markdown("### Pregunta:")
 st.markdown(f"Observa el gráfico de dispersión de 'PowerConsumption_Zone1' (en el eje x) vs 'PowerConsumption_Zone2'. ¿Cómo describirías la relación entre las dos variables?")
 
@@ -278,7 +274,16 @@ if st.button("Validar relación", key="val_scatter"):
 
 # Sección: Diagrama de Pastel de "Temperature" discretizado
 with st.container():
-    st.header("6. Diagrama de Pastel de `Temperature` Discretizado")
+    st.header("6. Diagrama de Pastel de Temperatura")
+
+    st.write("""
+    El diagrama de pastel es una representación gráfica que muestra la proporción de distintas categorías dentro de un conjunto de datos.
+    Cada porción del gráfico representa una categoría y su tamaño refleja la proporción que esta categoría ocupa respecto al total. 
+    Es útil para visualizar cómo se distribuyen los datos en diferentes grupos o categorías.
+
+    En este caso, no contamos con variables categóricas en su forma original, por lo que vamos a dividir los valores de la columna de temperatura en rangos de 10 grados. 
+    Así podremos observar cómo se distribuyen los datos de temperatura en diferentes intervalos.
+    """)
 
     # Discretizar la columna "Temperature" en rangos de 10 grados
     bins_temp = range(int(consumption['Temperature'].min()), int(consumption['Temperature'].max()) + 10, 10)
@@ -307,7 +312,7 @@ with st.container():
 
     # Pregunta sobre el rango de menor representación
     st.markdown("### Pregunta:")
-    st.markdown("¿Cuál es el rango de temperatura con menor representación en el diagrama de pastel?")
+    st.markdown("Observa el diagrama de pastel. ¿Cuál de los siguientes rangos de temperatura tiene la menor representación?")
 
     # Crear opciones basadas en los rangos de temperatura
     opciones_temp = labels_temp
@@ -317,5 +322,120 @@ with st.container():
 
     # Botón para confirmar la respuesta
     if st.button("Validar respuesta", key="validar_pastel"):
-        # Aquí puedes personalizar la respuesta esperada dependiendo de los datos
-        st.markdown(f"Has seleccionado: {respuesta_temp}. Observa el diagrama para evaluar si coincide con el rango de menor representación.")
+        if respuesta_temp == opciones_temp[-1]:  # La última opción es la correcta
+            st.success(f"¡Correcto! El rango {respuesta_temp} tiene la menor representación en la temperatura según el diagrama de pastel.")
+        else:
+            st.error(f"Incorrecto. El rango con menor representación es el más pequeño en la gráfica de pastel.")
+
+# Sección: Gráfico Boxplot con Plotly Express
+with st.container():
+    st.header("7. Gráfico Boxplot con `px.box`")
+
+    # Descripción del boxplot
+    st.markdown("""
+        
+    Un gráfico de caja o **boxplot** es una visualización gráfica que resume la distribución de un conjunto de datos numéricos a través de sus cuartiles. 
+    Es útil para identificar valores atípicos, la dispersión y la simetría en la distribución de los datos.
+
+    Los elementos principales del boxplot son:
+
+    - **Caja**: Representa el rango intercuartílico (IQR), que va desde el primer cuartil (Q1) hasta el tercer cuartil (Q3). La línea dentro de la caja indica la mediana.
+    - **Bigotes**: Extienden desde los cuartiles hacia los valores mínimos y máximos dentro de 1.5 veces el IQR.
+    - **Puntos fuera de los bigotes**: Son considerados valores atípicos.
+
+    El **boxplot** permite comparar la dispersión y los valores atípicos de diferentes columnas o grupos en los datos.
+    """)
+
+    # Seleccionar la columna para el boxplot
+    columna_boxplot = st.selectbox('Selecciona la columna para el boxplot:', columnas_numericas)
+
+    # Mostrar el boxplot
+    fig_boxplot = px.box(consumption.iloc[np.random.randint(0,len(consumption), 5000)], y=columna_boxplot, points="all")
+    fig_boxplot.update_layout(title=f'Boxplot de {columna_boxplot}', yaxis_title=columna_boxplot)
+
+    # Mostrar la gráfica en la app
+    st.plotly_chart(fig_boxplot)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small>Salida generada por <code>px.box(consumption, y='{columna_boxplot}')</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Pregunta interactiva sobre el boxplot
+st.markdown("### Pregunta:")
+st.markdown(f"Observa el boxplot de la columna 'DiffuseFlows'. ¿Qué puedes decir sobre los datos?")
+
+# Opciones de análisis del boxplot
+opciones_boxplot = ['Presencia de valores atípicos', 'Sin valores atípicos']
+
+# Crear el radio button sin selección predeterminada
+respuesta_boxplot = st.radio("Selecciona una opción:", opciones_boxplot)
+
+# Botón para confirmar la respuesta
+if st.button("Validar análisis", key="val_boxplot"):
+    # Aquí puedes personalizar la respuesta esperada dependiendo de la columna seleccionada
+    if respuesta_boxplot == 'Presencia de valores atípicos':
+        st.success("¡Correcto! Se observan valores atípicos.")
+    else:
+        st.error("Revisa nuevamente los datos en el boxplot, quizás haya otros aspectos importantes que notar.")
+
+# Sección: Gráfico de Violín con Plotly Express
+with st.container():
+    st.header("8. Gráfico de Violín con `px.violin`")
+
+    # Descripción del diagrama de violín
+    st.markdown("""
+    
+    Un **gráfico de violín** es una visualización que combina características del gráfico de caja (boxplot) y un gráfico de densidad. 
+    Muestra la distribución de los datos numéricos y también su densidad (frecuencia) a lo largo de los valores. 
+    Es útil para entender mejor la forma de la distribución, su asimetría, y la presencia de múltiples picos en los datos.
+
+    Los elementos principales del diagrama de violín son:
+
+    - **Cuerpo del violín**: Representa una estimación de la densidad de los datos, mostrando las frecuencias relativas.
+    - **Mediana y cuartiles**: Al igual que en un boxplot, se pueden mostrar la mediana y los cuartiles dentro del gráfico.
+    - **Distribución bimodal o multimodal**: A diferencia del boxplot, el gráfico de violín puede indicar si los datos tienen más de un pico o modo en la distribución.
+
+    Este gráfico proporciona información adicional sobre la distribución de los datos, más allá de lo que muestra un boxplot.
+    """)
+
+    # Seleccionar la columna para el gráfico de violín
+    columna_violin = st.selectbox('Selecciona la columna para el gráfico de violín:', columnas_numericas)
+
+    # Mostrar el gráfico de violín
+    fig_violin = px.violin(consumption.iloc[np.random.randint(0,len(consumption), 5000)], y=columna_violin, box=True, points="all")
+    fig_violin.update_layout(title=f'Gráfico de Violín de {columna_violin}', yaxis_title=columna_violin)
+
+    # Mostrar la gráfica en la app
+    st.plotly_chart(fig_violin)
+
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small>Salida generada por <code>px.violin(consumption, y='{columna_violin}', box=True, points="all")</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Pregunta interactiva sobre el gráfico de violín
+st.markdown("### Pregunta:")
+st.markdown("""Observa el gráfico de violín de la columna 'PowerConsumption_Zone3'. Teniendo en cuenta que Una distribución 
+simétrica significa que los datos están distribuidos de manera equilibrada alrededor de la mediana y la distribución asimétrica el caso contrario. ¿Qué puedes decir sobre los datos?""")
+
+# Opciones de análisis del diagrama de violín
+opciones_violin = ['Distribución simétrica', 'Distribución asimétrica']
+
+# Crear el radio button sin selección predeterminada
+respuesta_violin = st.radio("Selecciona una opción:", opciones_violin)
+
+# Botón para confirmar la respuesta
+if st.button("Validar análisis", key="val_violin"):
+    # Aquí puedes personalizar la respuesta esperada dependiendo de la columna seleccionada
+    if respuesta_violin == 'Distribución asimétrica':
+        st.success("¡Correcto! La distribución es asimétrica.")
+    else:
+        st.error("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución. bserva que no es igual arriba y abajo.")
+
+# Mensaje de cierre del módulo
+st.write("¡Fin del módulo 1! Ahora ya sabes cómo hacer una exploración gráfica de datasets.")
+
+st.warning("Cuando cierres esta ventana, no podrás guardar tu progreso. Si quieres tener una copia de tu trabajo, dirígete a la esquina superior derecha, donde verás tres puntos. Selecciona la opción 'Print' para guardar tus avances en formato PDF.")
