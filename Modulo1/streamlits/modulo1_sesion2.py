@@ -329,4 +329,4 @@ with st.container():
         if respuesta_temp == opciones_temp[-1]:  # La última opción es la correcta
             st.success(f"¡Correcto! El rango {respuesta_temp} tiene la menor representación en el diagrama de pastel.")
         else:
-            st.error(f"Incorrecto. El rango con menor representación es {opciones_temp[-1]}.")
+            st.error(f"Incorrecto. El rango con menor representación es el más pequeño en la gráfica de pastel..")
