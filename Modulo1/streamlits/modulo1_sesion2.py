@@ -368,10 +368,10 @@ with st.container():
 
 # Pregunta interactiva sobre el boxplot
 st.markdown("### Pregunta:")
-st.markdown(f"Observa el boxplot de la columna '{columna_boxplot}'. ¿Qué puedes decir sobre los datos?")
+st.markdown(f"Observa el boxplot de la columna 'DiffuseFlows'. ¿Qué puedes decir sobre los datos?")
 
 # Opciones de análisis del boxplot
-opciones_boxplot = ['Distribución simétrica', 'Distribución asimétrica', 'Presencia de valores atípicos', 'Sin valores atípicos']
+opciones_boxplot = ['Presencia de valores atípicos', 'Sin valores atípicos']
 
 # Crear el radio button sin selección predeterminada
 respuesta_boxplot = st.radio("Selecciona una opción:", opciones_boxplot)
@@ -379,8 +379,7 @@ respuesta_boxplot = st.radio("Selecciona una opción:", opciones_boxplot)
 # Botón para confirmar la respuesta
 if st.button("Validar análisis", key="val_boxplot"):
     # Aquí puedes personalizar la respuesta esperada dependiendo de la columna seleccionada
-    st.markdown(f"Has seleccionado: {respuesta_boxplot}. Observa el gráfico para evaluar si coincide con la distribución de `{columna_boxplot}`.")
     if respuesta_boxplot == 'Presencia de valores atípicos':
         st.success("¡Correcto! Se observan valores atípicos.")
     else:
-        st.warning("Revisa nuevamente los datos en el boxplot, quizás haya otros aspectos importantes que notar.")
+        st.error("Revisa nuevamente los datos en el boxplot, quizás haya otros aspectos importantes que notar.")
