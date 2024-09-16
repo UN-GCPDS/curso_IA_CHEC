@@ -437,4 +437,9 @@ if st.button("Validar análisis", key="val_violin"):
     if respuesta_violin == 'Distribución asimétrica':
         st.success("¡Correcto! La distribución es asimétrica.")
     else:
-        st.warning("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución. bserva que no es igual arriba y abajo.")
+        st.error("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución. bserva que no es igual arriba y abajo.")
+
+# Mensaje de cierre del módulo
+st.write("¡Fin del módulo 1! Ahora ya sabes cómo hacer una exploración gráfica de datasets.")
+
+st.warning("Cuando cierres esta ventana, no podrás guardar tu progreso. Si quieres tener una copia de tu trabajo, dirígete a la esquina superior derecha, donde verás tres puntos. Selecciona la opción 'Print' para guardar tus avances en formato PDF.")
