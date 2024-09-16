@@ -316,6 +316,6 @@ with st.container():
     respuesta_temp = st.radio("Selecciona una opción:", opciones_temp)
 
     # Botón para confirmar la respuesta
-    if st.button("Validar respuesta"):
+    if st.button("Validar respuesta", key="validar_pastel"):
         # Aquí puedes personalizar la respuesta esperada dependiendo de los datos
         st.markdown(f"Has seleccionado: {respuesta_temp}. Observa el diagrama para evaluar si coincide con el rango de menor representación.")
