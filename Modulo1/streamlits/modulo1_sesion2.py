@@ -44,7 +44,7 @@ with st.container():
     técnicas fundamentales para explorar el dataset mediante visualizaciones, como histogramas, gráficos de densidad, scatters, 
     gráficos de pastel, boxplots, diagramas de violín y geopandas. Exploraremos cómo cada una de estas bibliotecas nos permite
      analizar y comprender mejor la distribución y relaciones entre las variables clave. A partir de la sección 4, utilizaremos la base de datos
-      [Electric Power Consumption](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption)
+      [Electric Power Consumption](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption).
     """)
 
 # Sección: Probabilidad - Reglas de Suma y Multiplicación
@@ -231,9 +231,8 @@ with st.container():
 
     if st.button("Validar respuesta", key="val_hist"):
         if respuesta == 'Valores mayores a 50':
-            if valores_mayores_50 > valores_menores_50:
                 st.success("¡Correcto! Los valores mayores a 50 son más frecuentes.")
-            else:
+        else:
                 st.error("Incorrecto. Observa en qué parte del histograma se encuentran las barras más altas.")
 
 # Sección: Histograma con Seaborn y KDE

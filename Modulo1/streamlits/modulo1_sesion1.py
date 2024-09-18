@@ -144,7 +144,7 @@ with st.container():
 with st.container():
     st.header("3. Análisis de Frecuencia con `.value_counts()`")
     st.write("""
-    La función `.value_counts()` es útil para analizar la frecuencia de los valores en una columna específica. Por ejemplo, podemos ver cuántas veces
+    La función `.value_counts()` es útil para analizar la frecuencia de los valores en una columna específica. Podemos ver cuántas veces
     aparece cada valor en una columna categórica o discreta. Por ejemplo, a continuación se presenta cómo hacer el análisis sobre Temperature:
     """)
 
@@ -230,7 +230,7 @@ with st.container():
             """, unsafe_allow_html=True)
 
         else:
-            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption' en su nombre.")
+            st.error("No seleccionaste las columnas correctamente. Recuerda que, en este caso, las columnas que tienen datos sobre el consumo de energía son aquellas que tienen 'PowerConsumption' en su nombre y la que lleva el resgistro en el tiempo es 'DateTime'.")
             st.dataframe(consumption[columnas_seleccionadas])
             st.markdown(f"""
             <div style="text-align: right;">
