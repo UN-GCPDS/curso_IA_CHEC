@@ -442,6 +442,104 @@ if st.button("Validar análisis", key="val_violin"):
     else:
         st.error("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución. bserva que no es igual arriba y abajo.")
 
+
+# Sección: Probabilidad - Reglas de Suma y Multiplicación
+with st.container():
+    st.header("9. Reglas de Suma y Multiplicación en Probabilidades")
+
+    st.markdown("""
+    Las reglas de la **suma** y la **multiplicación** en probabilidades permiten calcular la probabilidad de la ocurrencia de uno o más eventos.
+    
+    - **Regla de la suma**: Si A y B son eventos mutuamente excluyentes, la probabilidad de que ocurra A o B es la suma de las probabilidades individuales de A y B.
+    - **Regla de la multiplicación**: Si A y B son eventos independientes, la probabilidad de que ocurran ambos eventos es el producto de sus probabilidades individuales.
+    """)
+
+    # Datos sintéticos: Supongamos que tenemos dos eventos A y B con probabilidades dadas
+    p_A = 0.6
+    p_B = 0.3
+    p_A_and_B = p_A * p_B  # Eventos independientes
+
+    st.write(f"La probabilidad de que ocurra el evento A es {p_A}.")
+    st.write(f"La probabilidad de que ocurra el evento B es {p_B}.")
+    st.write(f"Si los eventos son independientes, la probabilidad de que ocurran ambos es {p_A_and_B}.")
+
+    # Pregunta interactiva
+    st.markdown("### Pregunta:")
+    pregunta_suma = st.radio("Si A y B son mutuamente excluyentes, ¿cuál es la probabilidad de que ocurra A o B?", 
+                              ['0.9', '0.5', '0.3'])
+    
+    if st.button("Validar respuesta", key="val_suma"):
+        if pregunta_suma == '0.9':
+            st.success("¡Correcto! La probabilidad de que ocurra A o B es 0.9.")
+        else:
+            st.error("Incorrecto. Si A y B son mutuamente excluyentes, la probabilidad de que ocurra A o B es la suma de sus probabilidades individuales.")
+
+# Sección: Funciones de Densidad y Distribución
+with st.container():
+    st.header("10. Funciones de Densidad y de Distribución")
+
+    st.markdown("""
+    Las funciones de densidad y distribución son fundamentales en probabilidad:
+
+    - **Función de Densidad de Probabilidad (PDF)**: Describe la probabilidad de que una variable continua tome un valor específico.
+    - **Función de Distribución Acumulativa (CDF)**: Indica la probabilidad de que una variable aleatoria sea menor o igual a un valor dado.
+    """)
+
+    # Datos sintéticos: Distribución normal
+    mean = 0
+    std_dev = 1
+    data = np.random.normal(mean, std_dev, 1000)
+
+    # Mostrar la gráfica de la función de densidad
+    fig_pdf, ax_pdf = plt.subplots()
+    sns.histplot(data, kde=True, stat="density", linewidth=0, ax=ax_pdf)
+    ax_pdf.set_title('Función de Densidad de Probabilidad (PDF)')
+    st.pyplot(fig_pdf)
+
+    # Pregunta interactiva
+    st.markdown("### Pregunta:")
+    pregunta_pdf = st.radio("¿Qué característica describe mejor una función de densidad de probabilidad?", 
+                            ['Representa probabilidades acumuladas', 'Describe la probabilidad para variables discretas', 'Describe la probabilidad para variables continuas'])
+    
+    if st.button("Validar respuesta", key="val_pdf"):
+        if pregunta_pdf == 'Describe la probabilidad para variables continuas':
+            st.success("¡Correcto! La PDF describe la probabilidad para variables continuas.")
+        else:
+            st.error("Incorrecto. La PDF describe la probabilidad de variables continuas.")
+
+# Sección: Familias Paramétricas Clásicas y Métodos No Paramétricos
+with st.container():
+    st.header("11. Familias Paramétricas Clásicas y Métodos No Paramétricos")
+
+    st.markdown("""
+    - **Familias Paramétricas**: Se basan en suposiciones específicas sobre la distribución de los datos (por ejemplo, distribución normal, binomial).
+    - **Métodos No Paramétricos**: No asumen una forma específica para la distribución de los datos, lo que los hace más flexibles.
+    """)
+
+    # Datos sintéticos: Comparación entre una distribución normal y un método no paramétrico (Kernel Density Estimate)
+    data_normal = np.random.normal(0, 1, 1000)
+    data_nonparam = np.random.uniform(-3, 3, 1000)
+
+    # Gráfica comparativa
+    fig_parametric, ax_parametric = plt.subplots()
+    sns.histplot(data_normal, kde=True, color='blue', label='Paramétrico (Normal)', ax=ax_parametric)
+    sns.kdeplot(data_nonparam, color='red', label='No Paramétrico (KDE)', ax=ax_parametric)
+    ax_parametric.set_title('Comparación: Paramétrico vs No Paramétrico')
+    ax_parametric.legend()
+    st.pyplot(fig_parametric)
+
+    # Pregunta interactiva
+    st.markdown("### Pregunta:")
+    pregunta_parametric = st.radio("¿Cuál es una característica clave de los métodos no paramétricos?", 
+                                   ['Asumen una distribución específica', 'Son más flexibles que los métodos paramétricos'])
+    
+    if st.button("Validar respuesta", key="val_parametric"):
+        if pregunta_parametric == 'Son más flexibles que los métodos paramétricos':
+            st.success("¡Correcto! Los métodos no paramétricos son más flexibles.")
+        else:
+            st.error("Incorrecto. Los métodos no paramétricos son más flexibles porque no asumen una forma específica para la distribución.")
+
+
 # Mensaje de cierre del módulo
 st.write("¡Fin del módulo 1! Ahora ya sabes cómo hacer una exploración gráfica de datasets.")
 
