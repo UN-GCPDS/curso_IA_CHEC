@@ -522,8 +522,13 @@ with st.container():
 
     # Gráfica comparativa
     fig_parametric, ax_parametric = plt.subplots()
-    sns.histplot(data_normal, kde=True, color='blue', label='Paramétrico (Normal)', ax=ax_parametric)
-    sns.kdeplot(data_nonparam, color='red', label='No Paramétrico (KDE)', ax=ax_parametric)
+
+    # Ajustar histograma para normalizar alturas
+    sns.histplot(data_normal, kde=True, color='blue', label='Paramétrico (Normal)', stat="density", ax=ax_parametric)
+
+    # Ajustar el ancho de banda (bandwidth) para la KDE
+    sns.kdeplot(data_nonparam, color='red', label='No Paramétrico (KDE)', bw_adjust=0.5, ax=ax_parametric)
+
     ax_parametric.set_title('Comparación: Paramétrico vs No Paramétrico')
     ax_parametric.legend()
     st.pyplot(fig_parametric)
