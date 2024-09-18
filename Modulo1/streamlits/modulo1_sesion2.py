@@ -545,6 +545,7 @@ with st.container():
             st.error("Incorrecto. Los métodos no paramétricos son más flexibles porque no asumen una forma específica para la distribución.")
 
 
+
 # Mensaje de cierre del módulo
 st.write("¡Fin del módulo 1! Ahora ya sabes cómo hacer una exploración gráfica de datasets.")
 
