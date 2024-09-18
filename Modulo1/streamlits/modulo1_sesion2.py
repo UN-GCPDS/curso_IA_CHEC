@@ -36,39 +36,110 @@ for i in range(len(filas)):
 # Título del módulo
 st.title("Módulo 1: Programación y Estadística Básica con Python")
 
-# Sección introductoria
+# Sección: Probabilidad - Reglas de Suma y Multiplicación
 with st.container():
-    st.subheader("Introducción al Módulo")
-    st.write("""
-    **Sesión 2:** en esta sesión aprenderemos a visualizar datos usando Matplotlib, Seaborn y Plotly. Nos enfocaremos en las 
-    técnicas fundamentales para explorar el dataset mediante visualizaciones, como histogramas, gráficos de densidad, scatters, 
-    gráficos de pastel, boxplots, diagramas de violín y geopandas. Exploraremos cómo cada una de estas bibliotecas nos permite
-     analizar y comprender mejor la distribución y relaciones entre las variables clave. Utilizaremos la siguiente base de datos
-      [Electric Power Consumption](https://www.kaggle.com/datasets/fedesoriano/electric-power-consumption)
-    """)
-
-    st.markdown("""**Descripción de la base de datos:** Este dataset contiene datos sobre el consumo de energía en la 
-    ciudad de Tetuán, ubicada en el norte de Marruecos. Se centra en el análisis de cómo varios factores climáticos y otros 
-    parámetros afectan el consumo de energía en tres zonas diferentes de la ciudad debido a que Tetúan está ubicada a lo largo del mar Mediterráneo, 
-    con un clima suave y lluvioso en invierno, y caluroso y seco en verano. A continuación se hace una pequeña descripción de
-    cada variable (columna):""")
+    st.header("1. Reglas de Suma y Multiplicación en Probabilidades")
 
     st.markdown("""
-    - **Date Time**: Ventana de tiempo de diez minutos.
-    - **Temperature**: Temperatura del clima.
-    - **Humidity**: Humedad del clima.
-    - **Wind Speed**: Velocidad del viento.
-    - **General Diffuse Flows**: El término "flujo difuso" describe fluidos de baja temperatura (< 0.2° a ~ 100°C) que se descargan lentamente a través de montículos de sulfuro, flujos de lava fracturados y ensamblajes de tapetes bacterianos y macrofauna.
-    - **Diffuse Flows**
-    - **Zone 1 Power Consumption**: Consumo de energía en la Zona 1.
-    - **Zone 2 Power Consumption**: Consumo de energía en la Zona 2.
-    - **Zone 3 Power Consumption**: Consumo de energía en la Zona 3.
+    Las reglas de la **suma** y la **multiplicación** en probabilidades permiten calcular la probabilidad de la ocurrencia de uno o más eventos.
+    
+    - **Regla de la suma**: Si A y B son eventos mutuamente excluyentes, la probabilidad de que ocurra A o B es la suma de las probabilidades individuales de A y B.
+    - **Regla de la multiplicación**: Si A y B son eventos independientes, la probabilidad de que ocurran ambos eventos es el producto de sus probabilidades individuales.
     """)
 
-# Sección: Observación del Dataset con .head()
-with st.container():
-    st.header("1. Exploración Inicial del Dataset con `.head()`")
+    # Datos sintéticos: Supongamos que tenemos dos eventos A y B con probabilidades dadas
+    p_A = 0.6
+    p_B = 0.3
+    p_A_and_B = p_A * p_B  # Eventos independientes
 
+    st.write(f"La probabilidad de que ocurra el evento A es {p_A}.")
+    st.write(f"La probabilidad de que ocurra el evento B es {p_B}.")
+    st.write(f"Si los eventos son independientes, la probabilidad de que ocurran ambos es {p_A_and_B}.")
+
+    # Pregunta interactiva
+    st.markdown("### Pregunta:")
+    pregunta_suma = st.radio("Si A y B son mutuamente excluyentes, ¿cuál es la probabilidad de que ocurra A o B?", 
+                              ['0.9', '0.5', '0.3'])
+    
+    if st.button("Validar respuesta", key="val_suma"):
+        if pregunta_suma == '0.9':
+            st.success("¡Correcto! La probabilidad de que ocurra A o B es 0.9.")
+        else:
+            st.error("Incorrecto. Si A y B son mutuamente excluyentes, la probabilidad de que ocurra A o B es la suma de sus probabilidades individuales.")
+
+# Sección: Funciones de Densidad y Distribución
+with st.container():
+    st.header("2. Funciones de Densidad y de Distribución")
+
+    st.markdown("""
+    Las funciones de densidad y distribución son fundamentales en probabilidad:
+
+    - **Función de Densidad de Probabilidad (PDF)**: Describe la probabilidad de que una variable continua tome un valor específico.
+    - **Función de Distribución Acumulativa (CDF)**: Indica la probabilidad de que una variable aleatoria sea menor o igual a un valor dado.
+    """)
+
+    # Datos sintéticos: Distribución normal
+    mean = 0
+    std_dev = 1
+    data = np.random.normal(mean, std_dev, 1000)
+
+    # Mostrar la gráfica de la función de densidad
+    fig_pdf, ax_pdf = plt.subplots()
+    sns.histplot(data, kde=True, stat="density", linewidth=0, ax=ax_pdf)
+    ax_pdf.set_title('Función de Densidad de Probabilidad (PDF)')
+    st.pyplot(fig_pdf)
+
+    # Pregunta interactiva
+    st.markdown("### Pregunta:")
+    pregunta_pdf = st.radio("¿Qué característica describe mejor una función de densidad de probabilidad?", 
+                            ['Representa probabilidades acumuladas', 'Describe la probabilidad para variables discretas', 'Describe la probabilidad para variables continuas'])
+    
+    if st.button("Validar respuesta", key="val_pdf"):
+        if pregunta_pdf == 'Describe la probabilidad para variables continuas':
+            st.success("¡Correcto! La PDF describe la probabilidad para variables continuas.")
+        else:
+            st.error("Incorrecto. La PDF describe la probabilidad de variables continuas.")
+
+# Sección: Familias Paramétricas Clásicas y Métodos No Paramétricos
+with st.container():
+    st.header("3. Familias Paramétricas Clásicas y Métodos No Paramétricos")
+
+    st.markdown("""
+    - **Familias Paramétricas**: Se basan en suposiciones específicas sobre la distribución de los datos (por ejemplo, distribución normal, binomial).
+    - **Métodos No Paramétricos**: No asumen una forma específica para la distribución de los datos, lo que los hace más flexibles.
+    """)
+
+    # Datos sintéticos: Comparación entre una distribución normal y un método no paramétrico (Kernel Density Estimate)
+    data_normal = np.random.normal(0, 1, 1000)
+    data_nonparam = np.random.uniform(-3, 3, 1000)
+
+    # Gráfica comparativa
+    fig_parametric, ax_parametric = plt.subplots()
+
+    # Ajustar histograma para normalizar alturas
+    sns.histplot(data_normal, kde=True, color='blue', label='Paramétrico (Normal)', stat="density", ax=ax_parametric)
+
+    # Ajustar el ancho de banda (bandwidth) para la KDE
+    sns.kdeplot(data_nonparam, color='red', label='No Paramétrico (KDE)', bw_adjust=0.5, ax=ax_parametric)
+
+    ax_parametric.set_title('Comparación: Paramétrico vs No Paramétrico')
+    ax_parametric.legend()
+    st.pyplot(fig_parametric)
+
+    # Pregunta interactiva
+    st.markdown("### Pregunta:")
+    pregunta_parametric = st.radio("¿Cuál es una característica clave de los métodos no paramétricos?", 
+                                   ['Asumen una distribución específica', 'Son más flexibles que los métodos paramétricos'])
+    
+    if st.button("Validar respuesta", key="val_parametric"):
+        if pregunta_parametric == 'Son más flexibles que los métodos paramétricos':
+            st.success("¡Correcto! Los métodos no paramétricos son más flexibles.")
+        else:
+            st.error("Incorrecto. Los métodos no paramétricos son más flexibles porque no asumen una forma específica para la distribución.")
+
+# Sección: Exploración inicial del dataset
+with st.container():
+    st.header("4. Exploración Inicial del Dataset con `.head()`")
 
     num_filas = st.number_input('Selecciona el número de filas a mostrar:', min_value=1, max_value=50, step=1, value=5)
     st.dataframe(consumption.head(num_filas))
@@ -81,7 +152,7 @@ with st.container():
 
 # Sección: Histograma Personalizado
 with st.container():
-    st.header("2. Visualización de Histograma con `.hist()`")
+    st.header("5. Visualización de Histograma con `.hist()`")
 
  # Descripción del histograma y bins
     st.markdown("""
@@ -138,7 +209,7 @@ with st.container():
 
 # Sección: Histograma con Seaborn y KDE
 with st.container():
-    st.header("3. Visualización de Histograma con `sns.histplot` y KDE")
+    st.header("6. Visualización de Histograma con `sns.histplot` y KDE")
 
     # Descripción del histograma con KDE
     st.markdown("""
@@ -225,7 +296,7 @@ if st.button("Validar respuesta", key="val_dist"):
 
 # Sección: Gráfico de Dispersión (Scatter plot) con Matplotlib
 with st.container():
-    st.header("4. Gráfico de Dispersión con `plt.scatter`")
+    st.header("7. Gráfico de Dispersión con `plt.scatter`")
 
     # Descripción del gráfico de dispersión
     st.markdown("""
@@ -281,7 +352,7 @@ if st.button("Validar relación", key="val_scatter"):
 
 # Sección: Diagrama de Pastel de "Temperature" discretizado
 with st.container():
-    st.header("6. Diagrama de Pastel de Temperatura")
+    st.header("8. Diagrama de Pastel de Temperatura")
 
     st.write("""
     El diagrama de pastel es una representación gráfica que muestra la proporción de distintas categorías dentro de un conjunto de datos.
@@ -336,7 +407,7 @@ with st.container():
 
 # Sección: Gráfico Boxplot con Plotly Express
 with st.container():
-    st.header("7. Gráfico Boxplot con `px.box`")
+    st.header("9. Gráfico Boxplot con `px.box`")
 
     # Descripción del boxplot
     st.markdown("""
@@ -389,7 +460,7 @@ if st.button("Validar análisis", key="val_boxplot"):
 
 # Sección: Gráfico de Violín con Plotly Express
 with st.container():
-    st.header("8. Gráfico de Violín con `px.violin`")
+    st.header("10. Gráfico de Violín con `px.violin`")
 
     # Descripción del diagrama de violín
     st.markdown("""
@@ -441,109 +512,6 @@ if st.button("Validar análisis", key="val_violin"):
         st.success("¡Correcto! La distribución es asimétrica.")
     else:
         st.error("Revisa nuevamente los datos en el gráfico de violín para identificar la forma de la distribución. bserva que no es igual arriba y abajo.")
-
-
-# Sección: Probabilidad - Reglas de Suma y Multiplicación
-with st.container():
-    st.header("9. Reglas de Suma y Multiplicación en Probabilidades")
-
-    st.markdown("""
-    Las reglas de la **suma** y la **multiplicación** en probabilidades permiten calcular la probabilidad de la ocurrencia de uno o más eventos.
-    
-    - **Regla de la suma**: Si A y B son eventos mutuamente excluyentes, la probabilidad de que ocurra A o B es la suma de las probabilidades individuales de A y B.
-    - **Regla de la multiplicación**: Si A y B son eventos independientes, la probabilidad de que ocurran ambos eventos es el producto de sus probabilidades individuales.
-    """)
-
-    # Datos sintéticos: Supongamos que tenemos dos eventos A y B con probabilidades dadas
-    p_A = 0.6
-    p_B = 0.3
-    p_A_and_B = p_A * p_B  # Eventos independientes
-
-    st.write(f"La probabilidad de que ocurra el evento A es {p_A}.")
-    st.write(f"La probabilidad de que ocurra el evento B es {p_B}.")
-    st.write(f"Si los eventos son independientes, la probabilidad de que ocurran ambos es {p_A_and_B}.")
-
-    # Pregunta interactiva
-    st.markdown("### Pregunta:")
-    pregunta_suma = st.radio("Si A y B son mutuamente excluyentes, ¿cuál es la probabilidad de que ocurra A o B?", 
-                              ['0.9', '0.5', '0.3'])
-    
-    if st.button("Validar respuesta", key="val_suma"):
-        if pregunta_suma == '0.9':
-            st.success("¡Correcto! La probabilidad de que ocurra A o B es 0.9.")
-        else:
-            st.error("Incorrecto. Si A y B son mutuamente excluyentes, la probabilidad de que ocurra A o B es la suma de sus probabilidades individuales.")
-
-# Sección: Funciones de Densidad y Distribución
-with st.container():
-    st.header("10. Funciones de Densidad y de Distribución")
-
-    st.markdown("""
-    Las funciones de densidad y distribución son fundamentales en probabilidad:
-
-    - **Función de Densidad de Probabilidad (PDF)**: Describe la probabilidad de que una variable continua tome un valor específico.
-    - **Función de Distribución Acumulativa (CDF)**: Indica la probabilidad de que una variable aleatoria sea menor o igual a un valor dado.
-    """)
-
-    # Datos sintéticos: Distribución normal
-    mean = 0
-    std_dev = 1
-    data = np.random.normal(mean, std_dev, 1000)
-
-    # Mostrar la gráfica de la función de densidad
-    fig_pdf, ax_pdf = plt.subplots()
-    sns.histplot(data, kde=True, stat="density", linewidth=0, ax=ax_pdf)
-    ax_pdf.set_title('Función de Densidad de Probabilidad (PDF)')
-    st.pyplot(fig_pdf)
-
-    # Pregunta interactiva
-    st.markdown("### Pregunta:")
-    pregunta_pdf = st.radio("¿Qué característica describe mejor una función de densidad de probabilidad?", 
-                            ['Representa probabilidades acumuladas', 'Describe la probabilidad para variables discretas', 'Describe la probabilidad para variables continuas'])
-    
-    if st.button("Validar respuesta", key="val_pdf"):
-        if pregunta_pdf == 'Describe la probabilidad para variables continuas':
-            st.success("¡Correcto! La PDF describe la probabilidad para variables continuas.")
-        else:
-            st.error("Incorrecto. La PDF describe la probabilidad de variables continuas.")
-
-# Sección: Familias Paramétricas Clásicas y Métodos No Paramétricos
-with st.container():
-    st.header("11. Familias Paramétricas Clásicas y Métodos No Paramétricos")
-
-    st.markdown("""
-    - **Familias Paramétricas**: Se basan en suposiciones específicas sobre la distribución de los datos (por ejemplo, distribución normal, binomial).
-    - **Métodos No Paramétricos**: No asumen una forma específica para la distribución de los datos, lo que los hace más flexibles.
-    """)
-
-    # Datos sintéticos: Comparación entre una distribución normal y un método no paramétrico (Kernel Density Estimate)
-    data_normal = np.random.normal(0, 1, 1000)
-    data_nonparam = np.random.uniform(-3, 3, 1000)
-
-    # Gráfica comparativa
-    fig_parametric, ax_parametric = plt.subplots()
-
-    # Ajustar histograma para normalizar alturas
-    sns.histplot(data_normal, kde=True, color='blue', label='Paramétrico (Normal)', stat="density", ax=ax_parametric)
-
-    # Ajustar el ancho de banda (bandwidth) para la KDE
-    sns.kdeplot(data_nonparam, color='red', label='No Paramétrico (KDE)', bw_adjust=0.5, ax=ax_parametric)
-
-    ax_parametric.set_title('Comparación: Paramétrico vs No Paramétrico')
-    ax_parametric.legend()
-    st.pyplot(fig_parametric)
-
-    # Pregunta interactiva
-    st.markdown("### Pregunta:")
-    pregunta_parametric = st.radio("¿Cuál es una característica clave de los métodos no paramétricos?", 
-                                   ['Asumen una distribución específica', 'Son más flexibles que los métodos paramétricos'])
-    
-    if st.button("Validar respuesta", key="val_parametric"):
-        if pregunta_parametric == 'Son más flexibles que los métodos paramétricos':
-            st.success("¡Correcto! Los métodos no paramétricos son más flexibles.")
-        else:
-            st.error("Incorrecto. Los métodos no paramétricos son más flexibles porque no asumen una forma específica para la distribución.")
-
 
 
 # Mensaje de cierre del módulo
