@@ -199,7 +199,7 @@ with st.container():
 # sección indexacción básica
 
 with st.container():
-    st.header("4. Indexación básica")
+    st.header("4. Indexación Básica")
     st.write("""
     Recuerda que podemos elegir solo ver algunas filas o columnas dependiendo de la tarea en la que estemos interesados en ese momento.
     Por ejemplo, selecciona aquellas columnas que nos aporten únicamente el consumo de energía y el resgitro del tiempo en el cual fue tomada la muestra.
@@ -266,7 +266,7 @@ with st.container():
             st.error(f"El valor total es incorrecto. Recuerda que puedes buscar la fila por su índice.")
 
 with st.container():
-    st.header("5. Estadística básica con `.describe()`")
+    st.header("5. Estadística Básica con `.describe()`")
 
     st.write("""Genera las estadístibas básicas de las columnas (variables de interés). Las estadísticas descriptivas 
     incluyen aquellas que resumen la tendencia central, la dispersión y la forma de la distribución de un conjunto de 

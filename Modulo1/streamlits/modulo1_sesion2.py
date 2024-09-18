@@ -191,6 +191,13 @@ with st.container():
     # Mostrar la gráfica KDE pura en la app
     st.pyplot(fig_kde)
 
+    st.markdown(f"""
+    <div style="text-align: right;">
+    <small> Salida generada por <code>sns.kdeplot(consumption[{columna_seleccionada}])</code></small>
+    </div>
+    """, unsafe_allow_html=True)
+
+
     st.markdown("""
     Además del histograma, también podemos visualizar solo la curva que estima la densidad de los datos (KDE). 
     Esta curva nos permite observar la forma de la distribución de los valores de una manera más suave, sin la segmentación en bins que tiene el histograma. 
@@ -208,7 +215,7 @@ opciones = ['Distribución unimodal', 'Distribución bimodal', 'Distribución un
 respuesta_distribucion = st.radio("Selecciona una opción:", opciones)
 
 # Botón para confirmar la respuesta
-if st.button("Validar respuesta"):
+if st.button("Validar respuesta", key="val_dist"):
     # Supongamos que la temperatura tiene una distribución bimodal
     if respuesta_distribucion == 'Distribución bimodal':
         st.success("¡Correcto! La distribución de 'Temperature' es bimodal ya que tiene dos picos claramente visibles: uno alrededor de 15°C y otro alrededor de 20°C.")
@@ -418,7 +425,7 @@ with st.container():
 
 # Pregunta interactiva sobre el gráfico de violín
 st.markdown("### Pregunta:")
-st.markdown("""Observa el gráfico de violín de la columna 'PowerConsumption_Zone3'. Teniendo en cuenta que Una distribución 
+st.markdown("""Observa el gráfico de violín de la columna 'PowerConsumption_Zone3'. Teniendo en cuenta que una distribución 
 simétrica significa que los datos están distribuidos de manera equilibrada alrededor de la mediana y la distribución asimétrica el caso contrario. ¿Qué puedes decir sobre los datos?""")
 
 # Opciones de análisis del diagrama de violín
