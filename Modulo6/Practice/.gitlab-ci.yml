@@ -1,0 +1,44 @@
+image: python:3.9
+
+stages:
+  - lint
+  - test
+  - security
+
+# Job 1: Verificar estilo de código con flake8
+flake8:
+  stage: lint
+  script:
+    - pip install flake8
+    - flake8 app.py
+  tags:
+    - docker
+
+# Job 2: Análisis de dependencias con safety
+safety-check:
+  stage: security
+  script:
+    - pip install safety
+    - safety check -r requirements.txt
+  tags:
+    - docker
+
+# Job 3: Análisis de seguridad estática con bandit
+bandit:
+  stage: security
+  script:
+    - pip install bandit
+    - bandit -r .
+  tags:
+    - docker
+
+# Job 4: Ejecutar pruebas unitarias
+pytest:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest
+  tags:
+    - docker
+
+
