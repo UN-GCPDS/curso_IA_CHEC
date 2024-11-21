@@ -1,13 +1,8 @@
-# Manipulación de datos
 numpy
 pandas
-# Visualización de datos
 matplotlib
 seaborn
-# Reducción de dimensionalidad
 scikit-learn
 umap-learn
-# PROYECTO BACKEND
 flask
-# Guardar o cargar pesos del modelo
 joblib
